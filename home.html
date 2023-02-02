@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="stylehome.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <!-- creating navigation bar for home page -->
+    <nav id="header">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#sign_up_form" onclick="signUpDisplay()">Sign up</a></li>
+            <li><a href="#signin_div" onclick="signInDisplay()">Sign in</a></li>
+    </nav>
+
+    <!-- Sign UP page and table -->
+    <div class="form_div" id="sign_up_form" style="display: block;">
+        <h1>Sign Up Here</h1><hr>
+        <form action="POST" id="myForm">
+            <label for="fname">First Name </label>
+            <input type="text" id="fname" name="fname"><br><br>
+            <label for="lname">Last Name </label>
+            <input type="text" id="lname" name="lname" ><br><br>
+            <label for="user_name">User Name </label>
+            <input type="text" name="user_name" id="user_name"><br><br>
+            <label for="email">Email id </label>
+            <input type="email" name="email" id="email"><br><br>
+            <label for="number">Mobile Number </label>
+            <input type="number" name="number" id="number"><br><br>
+            <label for="pass">Password </label>
+            <input type="password" name="pass" id="pass"><br><br>
+            
+            <button type="button" id="signup" onclick="toSubmit();toReset()">Sign Up</button>
+            
+        </form>
+        <div id="welcome" style="display: none;">
+        <h1 id="type"></h1>
+    </div>
+    </div> 
+    <table id="myTable">
+        <thead>
+            <tr>
+                <th>UserId</th>
+                <th>User Name</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email id</th>
+                <th>Mobile Number</th>
+                <th>Password</th>
+            </tr>
+        </thead>
+        <tbody id="display"></tbody>
+    </table>
+
+    <!-- SignIn form  -->
+    <div id="signin_div" style="display: none;">
+        <h1 id="login_head" style="padding-left:50px;">Log In</h1>
+        <form id="fields" name="second">
+
+        <label for="user_name1">User Name </label>
+        <input type="text" name="user_name1" id="user_name1"><br><br>
+        <label for="pass1">Password </label>
+        <input type="password" name="pass1" id="pass1"><br><br>
+        </form>
+        <button type="button" id="login" onclick="toVerify();">Log In</button>
+    </div>
+</body>
+</html>
