@@ -16,9 +16,10 @@
   },
   "homepage": "https://github.com/kritika2707/InvestWell-assignments#readme",
   "dependencies": {
+    "body-parser": "^1.20.1",
     "express": "^4.18.2"
   },
-  "devDependencies": {},
   "keywords": [],
+  "devDependencies": {},
   "description": ""
 }
