@@ -1,0 +1,24 @@
+{
+  "name": "homepage",
+  "version": "1.0.0",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kritika2707/InvestWell-assignments.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kritika2707/InvestWell-assignments/issues"
+  },
+  "homepage": "https://github.com/kritika2707/InvestWell-assignments#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {},
+  "keywords": [],
+  "description": ""
+}
