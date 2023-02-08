@@ -36,13 +36,14 @@ app.get('/',(req,res)=>{
     res.sendFile(__dirname + '/htmlfiles/home.html');
 });
 
-app.post('/',(req,res)=>{
-     var fname = req.body.fname;
-     var lname = req.body.lname;
-     var user_name = req.body.user_name;
-     var email = req.body.email;
-     var mobile = req.body.number;
-     var pass = req.body.pass;
+app.post('/createuser',(req,res)=>{
+    let userData = req.body;
+     var fname = userData.fname;
+     var lname = userData.lname;
+     var user_name = userData.user_name;
+     var email = userData.email;
+     var mobile = userData.number;
+     var pass = userData.pass;
 
      mysql_con.connect(function(err){
         if(err){
@@ -51,25 +52,30 @@ app.post('/',(req,res)=>{
         var sql = "insert into user(first_name,last_name,user_name,email_id,mobile_number,password) values('"+fname+"','"+lname+"','"+user_name+"','"+email+"','"+mobile+"','"+pass+"')";
         mysql_con.query(sql, (err)=>{
             if(err) throw err;
+            
             res.send('Sign Up successfully!! ');
         });
      });
 });
 
 
-
+app.use(function (request, response, next) {
+    response.header("Access-Control-Allow-Origin", "*");
+    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 
 /* //using get api to fetch all data from database */
-/* app.get('/form',(req,res)=>{ */
-/*     mysql_con.query('select * from user',(err,rows)=>{ */
-/*         if(err) */
-/*             console.log(err); */
-/*         else */
-/*             //console.log(rows); */
-/*             res.send(rows) */
-/*     }) */
-/* }) */
-/*  */
+app.get('/fetchuser',(req,res)=>{
+    mysql_con.query('select * from user',(err,rows)=>{
+        if(err)
+            console.log(err);
+        else
+            //console.log(rows);
+            res.send(rows)
+    })
+})
+
 /* //get api to fetch specific id data */
 /* app.get('/form/:user_id',(req,res)=>{ */
 /*     mysql_con.query('select * from user where user_id=?',[req.params.user_id],(err,rows)=>{ */
@@ -82,16 +88,16 @@ app.post('/',(req,res)=>{
 /* }) */
 /*  */
 /*  */
-/* // delete api to delete a data from user */
-/* app.delete('/form/:user_id',(req,res)=>{ */
-/*     mysql_con.query('delete from user where user_id=?',[req.params.user_id],(err,rows)=>{ */
-/*         if(err) */
-/*             console.log(err); */
-/*         else */
-/*             res.send(rows) */
-/*     }) */
-/* }) */
-/*  */
+// delete api to delete a data from user
+app.delete('/deleteuser',(req,res)=>{
+    mysql_con.query('delete from user where user_id=?',[req.params.user_id],(err,rows)=>{
+        if(err)
+            console.log(err);
+        else
+            res.send(rows)
+    })
+})
+
 /*  */
 /* //post api to send data to server */
 /* app.post('/form',(req,res)=>{ */
@@ -109,7 +115,7 @@ app.post('/',(req,res)=>{
 /*  */
 /* //patch api to update data into database */
 /*  */
-app.patch('/',(req,res)=>{
+app.patch('/updateuser',(req,res)=>{
     var user = req.body;
     mysql_con.query(`update user set user_id = '${user.user_id}' where user_id= 102`,[user],(err,rows)=>{
         if(err){
@@ -149,7 +155,7 @@ app.patch('/',(req,res)=>{
 /*  */
 
 //to assign a port to the server
-app.listen(3000,()=>console.log("Server is running on port 3000"))
+app.listen(5500,()=>console.log("Server is running on port 5500"))
 
 
 

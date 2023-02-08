@@ -39,6 +39,27 @@ hr{
     color: antiquewhite;
     margin-top: 40px;
 }
+#delete-btn, #fetch-btn, #update-btn{
+    border: none;
+    font-size: 18px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 8px;
+    border-radius: 10px;
+    color: antiquewhite;
+    margin: auto;
+    width: 75px;
+    text-align: center;
+}
+#delete-btn{
+    background-color: red;
+}
+#fetch-btn{
+    background-color: coral;
+}
+#update-btn{
+    /* margin-left: 550px; */
+    background-color: green;
+}
 table{
     margin-left: 250px;
 }

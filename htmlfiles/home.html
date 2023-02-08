@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" href="stylehome.css">
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    
 </head>
 <body>
     <!-- creating navigation bar for home page -->
@@ -22,7 +22,7 @@
     <!-- Sign UP page and table -->
     <div class="form_div" id="sign_up_form" style="display: block;">
         <h1>Sign Up Here</h1><hr>
-        <form action="" method="POST" id="myForm">
+        <form action="/createruser" method="POST" id="myForm">
             <label for="fname">First Name </label>
             <input type="text" id="fname" name="fname"><br><br>
             <label for="lname">Last Name </label>
@@ -36,13 +36,21 @@
             <label for="pass">Password </label>
             <input type="password" name="pass" id="pass"><br><br>
             
-            <input type="submit" id="signup" value="Submit">
+            <input type="submit" id="signup" onclick="validation()" value="Submit">
+            
+            
+            
+
             
         </form>
         <div id="welcome" style="display: none;">
         <h1 id="type"></h1>
-    </div>
+        </div>
     </div> 
+
+    <input type="submit" id="update-btn" value="Update">
+    <input type="submit" id="fetch-btn" onclick="getApi()" value="Show">
+    <input type="submit" id="delete-btn" value="Delete">
     <!-- <table id="myTable"> -->
     <!--     <thead> -->
     <!--         <tr> -->
@@ -71,4 +79,6 @@
         <button type="button" id="login" onclick="toVerify();">Log In</button>
     </div>
 </body>
+<script src="script.js"></script>
+
 </html>
