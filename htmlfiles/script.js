@@ -34,7 +34,12 @@ let user_id = 0;
 /*     display.innerHTML = datadisplay; */
 /* } */
 let user = {
-    fname: document.querySelector(#name)
+    fname: document.querySelector("#fname").value,
+    fname: document.querySelector("#fname").value,
+    fname: document.querySelector("#fname").value,
+    fname: document.querySelector("#fname").value,
+    fname: document.querySelector("#fname").value,
+    fname: document.querySelector("#fname").value,
 }
 function toReset(){
     document.getElementById("myForm").reset();
