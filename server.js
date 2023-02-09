@@ -1,7 +1,7 @@
 const mysql = require('mysql2');
 
 //database connection
-let mysql_con = mysql.createConnection({
+var mysql_con = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'kittu277',
@@ -21,7 +21,8 @@ mysql_con.connect((err)=>{
 
 const express = require("express");
 const bodyParser = require("body-parser");
-let app = express(); 
+var app = express(); 
+var port = 5500;
 //const connection = require('./connection');
 
 
@@ -30,33 +31,30 @@ app.use(bodyParser.json()); //this is to accept data in json format
 
 app.use(bodyParser.urlencoded({ extended:true })); //this is to decode data send through html form
 
-app.use(express.static('htmlfiles'));
+app.use(express.static('frontend'));
 
 app.get('/',(req,res)=>{
-    res.sendFile(__dirname + '/htmlfiles/home.html');
+    res.sendFile(__dirname + '/frontend/home.html');
 });
 
 app.post('/createuser',(req,res)=>{
-    let userData = req.body;
-     var fname = userData.fname;
-     var lname = userData.lname;
-     var user_name = userData.user_name;
-     var email = userData.email;
-     var mobile = userData.number;
-     var pass = userData.pass;
+    //var userData = req.body;
+     var fname = req.body.fname;
+     var lname = req.body.lname;
+     var user_name = req.body.user_name;
+     var email = req.body.email;
+     var mobile = req.body.number;
+     var pass = req.body.pass;
 
-     mysql_con.connect(function(err){
-        if(err){
-            throw err;
-        }
         var sql = "insert into user(first_name,last_name,user_name,email_id,mobile_number,password) values('"+fname+"','"+lname+"','"+user_name+"','"+email+"','"+mobile+"','"+pass+"')";
         mysql_con.query(sql, (err)=>{
-            if(err) throw err;
+            //if(err) throw err;
             
-            res.send('Sign Up successfully!! ');
+            //res.send('Sign Up successfully!! ');
         });
+        console.log(req.body);
+        res.send(req.body);
      });
-});
 
 
 app.use(function (request, response, next) {
@@ -89,14 +87,14 @@ app.get('/fetchuser',(req,res)=>{
 /*  */
 /*  */
 // delete api to delete a data from user
-app.delete('/deleteuser',(req,res)=>{
-    mysql_con.query('delete from user where user_id=?',[req.params.user_id],(err,rows)=>{
-        if(err)
-            console.log(err);
-        else
-            res.send(rows)
-    })
-})
+/* app.delete('/deleteuser',(req,res)=>{ */
+/*     mysql_con.query('delete from user where user_id=?',[req.params.user_id],(err,rows)=>{ */
+/*         if(err) */
+/*             console.log(err); */
+/*         else */
+/*             res.send(rows) */
+/*     }) */
+/* }) */
 
 /*  */
 /* //post api to send data to server */
@@ -115,17 +113,17 @@ app.delete('/deleteuser',(req,res)=>{
 /*  */
 /* //patch api to update data into database */
 /*  */
-app.patch('/updateuser',(req,res)=>{
-    var user = req.body;
-    mysql_con.query(`update user set user_id = '${user.user_id}' where user_id= 102`,[user],(err,rows)=>{
-        if(err){
-            console.log(err);
-        }
-        else{
-            res.send(rows)
-        }
-    })
-})
+/* app.patch('/updateuser',(req,res)=>{ */
+/*     var user = req.body; */
+/*     mysql_con.query(`update user set user_id = '${user.user_id}' where user_id= 102`,[user],(err,rows)=>{ */
+/*         if(err){ */
+/*             console.log(err); */
+/*         } */
+/*         else{ */
+/*             res.send(rows) */
+/*         } */
+/*     }) */
+/* }) */
 /*  */
 /* //put api to update all the values in database */
 /* app.put('/form',(req,res)=>{ */
@@ -155,7 +153,7 @@ app.patch('/updateuser',(req,res)=>{
 /*  */
 
 //to assign a port to the server
-app.listen(5500,()=>console.log("Server is running on port 5500"))
+app.listen(port,()=>console.log("Server is running on port 5500"))
 
 
 
