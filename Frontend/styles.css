@@ -158,3 +158,12 @@ label{
 #login_head{
     margin-top: 0;
 }
+
+#delete_user{
+    margin: auto;
+    height: 200px;
+    width: 400px;
+    border: 2px solid black;
+    text-align: center;
+    border-radius: 10%;
+}

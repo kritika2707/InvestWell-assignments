@@ -17,6 +17,8 @@
             <li><a href="#">Contact Us</a></li>
             <li><a href="#sign_up_form" onclick="signUpDisplay()">Sign up</a></li>
             <li><a href="#signin_div" onclick="signInDisplay()">Sign in</a></li>
+            <li><a href="#delete_user" onclick="deleteDisplay()">Delete record</a></li>
+            <li><a href="#myTable" onclick="getApi()">Show</a></li>
     </nav>
 
     <!-- Sign UP page and table -->
@@ -49,22 +51,30 @@
     </div> 
 
     <input type="submit" id="update-btn" value="Update">
-    <input type="submit" id="fetch-btn" onclick="getApi()" value="Show">
-    <input type="submit" id="delete-btn" value="Delete">
-    <!-- <table id="myTable"> -->
-    <!--     <thead> -->
-    <!--         <tr> -->
-    <!--             <th>UserId</th> -->
-    <!--             <th>User Name</th> -->
-    <!--             <th>First Name</th> -->
-    <!--             <th>Last Name</th> -->
-    <!--             <th>Email id</th> -->
-    <!--             <th>Mobile Number</th> -->
-    <!--             <th>Password</th> -->
-    <!--         </tr> -->
-    <!--     </thead> -->
-    <!--     <tbody id="display"></tbody> -->
-    <!-- </table> -->
+
+
+
+    <div id="delete_user" style="display: none;">
+        <form id="">
+            <h1>Delete User</h1><br><br>
+            <input type="text" id="deleteUserId" placeholder="User Id" name="deleteUserId">
+            <input type="submit" id="delete-btn" onclick="deleteApi()" value="Delete">
+        </form>
+    </div>
+    <table id="myTable">
+        <thead>
+            <tr>
+                <th>UserId</th>
+                <th>User Name</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email id</th>
+                <th>Mobile Number</th>
+                <th>Password</th>
+            </tr>
+        </thead>
+        <tbody id="display"></tbody>
+    </table>
 
     <!-- SignIn form  -->
     <div id="signin_div" style="display: none;">

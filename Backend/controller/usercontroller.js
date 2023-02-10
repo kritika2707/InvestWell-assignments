@@ -20,14 +20,13 @@ const controlInsertData = (req,res)=>{
 }
 
 const controlUpdateData = (req,res)=>{
-    const updateUserData = req.body;q
-    const id = req.params.id;
+    const updateUserData = req.body;
     return servicesUpdateData(id, updateUserData);
 }
 
 const controlDeleteData = (req,res)=>{
-    const id = req.params.id;
-    return servicesDeleteData(id);
+    const updateUserData = req.body;
+    return servicesDeleteData(updateUserData.userId);
 }
 
 module.exports = {
