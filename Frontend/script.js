@@ -120,16 +120,18 @@ function getApi(){
         error: function(error){
             console.log(error);
         }
-        })
+    })
 }
 
+
 function postApi(userObj){
-    alert('Hello!');
+    console.log(userObj);
     $.ajax({
         url: 'http://localhost:5500/createuser',
         type: 'POST',
         //dataType:"json",
         data: userObj,
+        
         success: function(result){
            console.log(result);
         },
