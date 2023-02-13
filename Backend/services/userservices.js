@@ -1,9 +1,13 @@
 // this file is for services functions....
 const {fetchData,insertData,updateData,deleteData} = require('../repositories/userdb');
 
-const servicesFetchData = ()=>{
+const servicesFetchData = (cb)=>{
     const sqlQuery = "select * from user";
-    return fetchData(sqlQuery);
+    fetchData(sqlQuery,function(err,res){
+        //console.log(res);
+        cb(null,res);
+        //return result;
+    });
 }
 
 const servicesInsertData = (newUser)=>{
@@ -11,9 +15,8 @@ const servicesInsertData = (newUser)=>{
     return insertData(sqlQuery);
 }
 
-const servicesUpdateData = (id , updateUser)=>{
-    console.log(updateUser);
-    const sqlQuery  = `update user set first_name = "${updateUser.first_name}" , last_name = "${updateUser.last_name}", user_name = "${updateUser.user_name}", email_id = "${updateUser.email}", mobile_number = "${updateUser.number}", password = "${updateUser.pass}" where user_id = ${id}`;
+const servicesUpdateData = (id , updateUserData)=>{
+    const sqlQuery  = `update user set first_name = "${updateUserData.fname}" , last_name = "${updateUserData.lname}", user_name = "${updateUserData.user_name}", email_id = "${updateUserData.email}", mobile_number = "${updateUserData.num}", password = "${updateUserData.pass}" where user_id = ${id}`;
     return updateData(sqlQuery);
 }
 

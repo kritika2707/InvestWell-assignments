@@ -61,35 +61,19 @@ hr{
     background-color: green;
 }
 table{
-    margin-left: 250px;
-}
-#myTable{
-    display: none;
-    border-collapse: collapse;
-}
-th{
-    border: 2px solid rgb(65, 8, 60);
-    height: 40px;
-    font-weight: 1000;
-    color: rgb(73, 20, 69);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, serif;
-    background-color: blanchedalmond;
-}
-td{
-    border: 2px solid rgb(65, 8, 60);
-    text-align: center;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    width: 100%;
+    border: 2px solid ;
 }
 #reset-btn{
     border: none;
     font-size: 18px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    padding: 8px 20px;
+    padding: 6px 12px;
     border-radius: 10px;
     background-color: rgb(219, 76, 76);
     color: antiquewhite;
     margin-left: 120px;
-    margin-top: 50px;
+    margin-top: 40px;
 }
 
 nav li{
@@ -166,4 +150,19 @@ label{
     border: 2px solid black;
     text-align: center;
     border-radius: 10%;
+}
+
+#updateUser{
+    margin: 45px;
+}
+#updateUser label{
+    float: left;
+    color: rgb(39, 16, 37);
+    font-weight:bold;
+}
+#updateUser input:not(#update-btn,#reset-btn), select{
+    float: right;
+    border: 2px solid rgb(39, 16, 37);
+    border-radius: 5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

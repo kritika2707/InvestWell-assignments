@@ -8,7 +8,9 @@ const showForm = (req,res)=>{
 
 const controlFetchData = (req,res)=>{
     //implement validation
-    return servicesFetchData();
+    servicesFetchData(function(err,result){
+        res.send(result);
+    })
 }
 
 const controlInsertData = (req,res)=>{
@@ -20,8 +22,10 @@ const controlInsertData = (req,res)=>{
 }
 
 const controlUpdateData = (req,res)=>{
+
     const updateUserData = req.body;
-    return servicesUpdateData(id, updateUserData);
+    //console.log(updateUserData);
+    return servicesUpdateData(updateUserData.uUserId, updateUserData);
 }
 
 const controlDeleteData = (req,res)=>{

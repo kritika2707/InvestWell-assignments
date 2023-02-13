@@ -17,9 +17,11 @@ function toSubmit(){
     user_id++;
     user_detail.push(userObj);
     postApi(userObj);
+    toReset();
 }
 
-function toReset(){
+function toReset(e){
+    e.preventDefault();
     document.getElementById("myForm").reset();
 }
 
@@ -55,7 +57,6 @@ function validation(){
         return false;
     }
 }
-
 function myFunction() {
     var x = document.getElementById("pass");
     if (x.type === "password") {
@@ -70,26 +71,57 @@ function signInDisplay(){
     document.getElementById("signin_div").style.display = "block";
     document.getElementById("sign_up_form").style.display = "none";
     document.getElementById("delete_user").style.display = "none";
+    document.getElementById("update_data").style.display = "none";
 }
 function signUpDisplay(){
     document.getElementById("signin_div").style.display = "none";
     document.getElementById("sign_up_form").style.display = "block";
     document.getElementById("delete_user").style.display = "none";
+    document.getElementById("update_data").style.display = "none";
 }
 function deleteDisplay(){
     document.getElementById("signin_div").style.display = "none";
     document.getElementById("sign_up_form").style.display = "none";
     document.getElementById("delete_user").style.display = "block";
+    document.getElementById("update_data").style.display = "none";
+}
+function updateDisplay(){
+    document.getElementById("signin_div").style.display = "none";
+    document.getElementById("sign_up_form").style.display = "none";
+    document.getElementById("delete_user").style.display = "none";
+    document.getElementById("update_data").style.display = "block";
 }
 
 function getApi(){
     
+    let rows = [];
     $.ajax({
         url: "http://localhost:5500/fetchuser",
         type: "GET",
         
         success: function (result){
-            console.log(result);
+            rows = result;
+            let str = rows.length>0 ?
+            `<tr class = "header">
+            <th>UserId</th>
+            <th>User Name</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email id</th>
+            <th>Mobile Number</th></tr>`: "No data in database";
+            rows.forEach((user) => {
+                str+=`<tr>
+                <td>${user.user_id}</td>
+                <td>${user.first_name}</td>
+                <td>${user.last_name}</td>
+                <td>${user.user_name}</td>
+                <td>${user.email_id}</td>
+                <td>${user.mobile_number}</td>
+                </tr>`;
+            });
+            console.log(str);
+            const output = document.getElementsByClassName('myTable')[0];
+            output.innerHTML = str;
         },
         error: function(error){
             console.log(error);
@@ -114,8 +146,9 @@ function postApi(userObj){
     });
 }
 
-function deleteApi(){
-    //e.preventDefault();
+function deleteApi(e){
+    
+    e.preventDefault();
     const userId = parseInt(document.getElementById('deleteUserId').value);
     console.log(userId);
     const obj = {
@@ -134,4 +167,45 @@ function deleteApi(){
             console.log('error');
         }
     });
+}
+
+document.getElementById('update-btn').addEventListener('click',updateApi);
+document.getElementById('reset-btn').addEventListener('click',toReset);
+document.getElementById('delete-btn').addEventListener('click',deleteApi);
+
+function updateApi(e){
+    e.preventDefault();
+    const fname = document.getElementById('ufname').value;
+    const lname = document.getElementById('ulname').value;
+    const user_name = document.getElementById('uusername').value;
+    const email = document.getElementById('uemail').value;
+    const num = document.getElementById('unumber').value;
+    const pass = document.getElementById('upass').value;
+    //console.log("HI");
+    const uUserId = parseInt(document.getElementById('updateUserId').value);
+    //console.log(uUserId);
+    const obj = {
+        uUserId,
+        fname,
+        lname,
+        user_name,
+        email,
+        num,
+        pass
+    }
+    console.log(obj);
+    $.ajax({
+        url: 'http://localhost:5500/updateuser',
+        type: 'POST',
+        //dataType:"json",
+        data: obj,
+        
+        success: function(result){
+           console.log(result);
+        },
+        error: function(){
+            console.log('error');
+        }
+    });
+    toReset();
 }

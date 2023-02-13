@@ -1,12 +1,15 @@
 const connection = require('../connection/db');
 
 // fucnction to fetch data
-const fetchData = (sqlQuery)=>{
-    return connection.query(sqlQuery,(err,result)=>{
+const fetchData = (sqlQuery,cb)=>{
+
+    connection.query(sqlQuery,(err,res)=>{
         if(err)
         return console.log(err);
-        else
-        console.log("All rows",result);
+        
+        //console.log(result);
+        return cb(null,res);
+        //return result;
     })
 }
 
@@ -27,13 +30,13 @@ const insertData = (sqlQuery)=>{
 const updateData = (sqlQuery)=>{
     return connection.query(
         sqlQuery,
-        (err,result)=>{
+        (err)=>{
         if(err){
             return console.log(err);
         }
         else
         {
-            console.log("Record updated!!" + result);
+            console.log("Record updated!!");
         }
     })
 }
