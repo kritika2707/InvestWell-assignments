@@ -1,21 +1,30 @@
 // this file is for services functions....
 const {fetchData,insertData,updateData,deleteData} = require('../repositories/userdb');
 
-const servicesFetchData = (cb)=>{
+//callback is used here
+/* const servicesFetchData = (cb)=>{ */
+/*     const sqlQuery = "select * from user"; */
+/*     fetchData(sqlQuery,function(err,res){ */
+/*         //console.log(res); */
+/*         cb(null,res); */
+/*         //return result; */
+/*     }); */
+/* } */
+
+//promises is used here
+const servicesFetchData = async ()=>{
+    const sqlQuery = "select * from user";
+    const result = await fetchData(sqlQuery);
     return new Promise((resolve)=>{
-        const sqlQuery = "select * from user";
-        const result = fetchData(sqlQuery);
-        result.then((data)=>{
-            resolve(data);
+            resolve(result);
         }) 
-    })
+    }
     /* const sqlQuery = "select * from user"; */
     /* fetchData(sqlQuery,function(err,res){ */
     /*     //console.log(res); */
     /*     cb(null,res); */
     /*     //return result; */
     /* }); */
-}
 
 const servicesInsertData = (newUser)=>{
     const sqlQuery = `insert into user(first_name,last_name,user_name,email_id,mobile_number,password) values("${newUser.fname}","${newUser.lname}","${newUser.user_name}","${newUser.email}",${newUser.number},"${newUser.pass}")`;

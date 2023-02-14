@@ -5,13 +5,19 @@ const path = require("path");
 const showForm = (req,res)=>{
     res.sendFile(path.join(__dirname,"../..","frontend","home.html"));
 }
+//callback is used here
+/* const controlFetchData = (req,res)=>{ */
+/*     //implement validation */
+/*     servicesFetchData(function(err,result){ */
+/*         res.send(result); */
+/*     }) */
+/* } */
 
-const controlFetchData = (req,res)=>{
+//promises is used here
+const controlFetchData =async (req,res)=>{
     //implement validation
-    const result = servicesFetchData();
-    result.then((data)=>{
-        res.send(data);
-    })
+    const result = await servicesFetchData();
+        res.send(result);
 }
 
 const controlInsertData = (req,res)=>{

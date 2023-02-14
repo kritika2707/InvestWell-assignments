@@ -1,7 +1,23 @@
 const connection = require('../connection/db');
 
 // fucnction to fetch data
-const fetchData = (sqlQuery)=>{
+
+//callback is used here
+/* const fetchData = (sqlQuery,cb)=>{ */
+/*  */
+/*     connection.query(sqlQuery,(err,res)=>{ */
+/*         if(err) */
+/*         return console.log(err); */
+/*          */
+/*         //console.log(result); */
+/*         return cb(null,res); */
+/*         //return result; */
+/*     }) */
+/* } */
+/*  */
+
+//promises is used here
+const fetchData = async(sqlQuery)=>{
 
     return new Promise((resolve)=>{
         connection.query(sqlQuery,(err,res)=>{
