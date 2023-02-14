@@ -17,12 +17,12 @@ app.use(express.static(path.join(__dirname,'/frontend')));
 app.use('/',routes);
 
 
-app.use(function (request, response, next) {
-    response.header("Access-Control-Allow-Origin", "*");
-    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  });
-
+/* app.use(function (request, response, next) { */
+/*     response.header("Access-Control-Allow-Origin", "*"); */
+/*     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"); */
+/*     next(); */
+/*   }); */
+/*  */
 
   //to assign a port to the server
 app.listen(port,()=>console.log("Server is running on port 5500"))

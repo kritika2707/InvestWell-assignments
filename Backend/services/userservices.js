@@ -2,12 +2,19 @@
 const {fetchData,insertData,updateData,deleteData} = require('../repositories/userdb');
 
 const servicesFetchData = (cb)=>{
-    const sqlQuery = "select * from user";
-    fetchData(sqlQuery,function(err,res){
-        //console.log(res);
-        cb(null,res);
-        //return result;
-    });
+    return new Promise((resolve)=>{
+        const sqlQuery = "select * from user";
+        const result = fetchData(sqlQuery);
+        result.then((data)=>{
+            resolve(data);
+        }) 
+    })
+    /* const sqlQuery = "select * from user"; */
+    /* fetchData(sqlQuery,function(err,res){ */
+    /*     //console.log(res); */
+    /*     cb(null,res); */
+    /*     //return result; */
+    /* }); */
 }
 
 const servicesInsertData = (newUser)=>{

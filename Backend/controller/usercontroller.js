@@ -8,8 +8,9 @@ const showForm = (req,res)=>{
 
 const controlFetchData = (req,res)=>{
     //implement validation
-    servicesFetchData(function(err,result){
-        res.send(result);
+    const result = servicesFetchData();
+    result.then((data)=>{
+        res.send(data);
     })
 }
 
