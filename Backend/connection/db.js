@@ -9,6 +9,13 @@ var mysqlConnect = mysql.createConnection({
     password: 'kittu277',
     database: 'investwell_assignment'
 })
+
+mysqlConnect.connect((err) => {
+    if (err)
+        console.log(err);
+    else
+        console.log('Database Connected!!')
+})
 // checking database is connected or not
 // making this file export file
 module.exports = mysqlConnect;

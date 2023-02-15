@@ -1,35 +1,42 @@
-.form_div{
+.form_div {
     border: 1px solid rgb(104, 48, 91);
     height: 450px;
     width: 400px;
     margin: 70px auto;
     border-radius: 30px;
 }
-h1{
+
+h1 {
     margin: 10px 100px;
     color: rgb(104, 48, 91);
 }
-#myForm{
+
+#myForm {
     margin: 45px;
 }
-#myForm label{
+
+#myForm label {
     float: left;
     color: rgb(39, 16, 37);
-    font-weight:bold;
+    font-weight: bold;
 }
-#myForm input:not(#signup), select{
+
+#myForm input:not(#signup),
+select {
     float: right;
     border: 2px solid rgb(39, 16, 37);
     border-radius: 5px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-hr{
+
+hr {
     width: 110px;
     height: 4px;
     background-color: rgb(153, 118, 145);
     border: none;
 }
-#signup{
+
+#signup {
     border: none;
     font-size: 18px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -39,7 +46,10 @@ hr{
     color: antiquewhite;
     margin-top: 40px;
 }
-#delete-btn, #fetch-btn, #update-btn{
+
+#delete-btn,
+#fetch-btn,
+#update-btn {
     border: none;
     font-size: 18px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -50,21 +60,26 @@ hr{
     width: 75px;
     text-align: center;
 }
-#delete-btn{
+
+#delete-btn {
     background-color: red;
 }
-#fetch-btn{
+
+#fetch-btn {
     background-color: coral;
 }
-#update-btn{
+
+#update-btn {
     /* margin-left: 550px; */
     background-color: green;
 }
-table{
+
+table {
     width: 100%;
-    border: 2px solid ;
+    border: 2px solid;
 }
-#reset-btn{
+
+#reset-btn {
     border: none;
     font-size: 18px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -76,14 +91,15 @@ table{
     margin-top: 40px;
 }
 
-nav li{
-    list-style-type:none;
+nav li {
+    list-style-type: none;
     padding: 20px;
-    text-decoration:none;
+    text-decoration: none;
     /*border: 1px solid black;*/
 
 }
-nav{
+
+nav {
     display: flex;
     width: 100%;
     background-color: rgb(211, 82, 82);
@@ -91,44 +107,54 @@ nav{
     height: 70px;
     align-items: center;
 }
-a{
+
+a {
     color: aliceblue;
 }
-a:link{
+
+a:link {
     text-decoration: none;
 }
-nav ul li a:hover{
-    color:gray;
+
+nav ul li a:hover {
+    color: gray;
 }
-#signin_div{
+
+#signin_div {
     border: 1px solid rgb(104, 48, 91);
     height: 200px;
     width: 400px;
-    margin: 20px auto; 
+    margin: 20px auto;
     padding: 50px 20px;
     border-radius: 30px;
 }
-label{
+
+label {
     float: left;
     color: rgb(39, 16, 37);
-    font-weight:bold;
+    font-weight: bold;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-#signin_div input{
+
+#signin_div input {
     border: 2px solid rgb(39, 16, 37);
     border-radius: 5px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-#user_name{
+
+#user_name {
     margin-left: 60px;
 }
-#pass{
+
+#pass {
     margin-left: 72px;
 }
-#fields{
+
+#fields {
     margin: 30px 40px;
 }
-#login{
+
+#login {
     border: none;
     font-size: 18px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -136,14 +162,15 @@ label{
     border-radius: 10px;
     background-color: rgb(153, 118, 145);
     color: antiquewhite;
-    
+
     margin-left: 175px;
 }
-#login_head{
+
+#login_head {
     margin-top: 0;
 }
 
-#delete_user{
+#delete_user {
     margin: auto;
     height: 200px;
     width: 400px;
@@ -152,15 +179,18 @@ label{
     border-radius: 10%;
 }
 
-#updateUser{
+#updateUser {
     margin: 45px;
 }
-#updateUser label{
+
+#updateUser label {
     float: left;
     color: rgb(39, 16, 37);
-    font-weight:bold;
+    font-weight: bold;
 }
-#updateUser input:not(#update-btn,#reset-btn), select{
+
+#updateUser input:not(#update-btn, #reset-btn),
+select {
     float: right;
     border: 2px solid rgb(39, 16, 37);
     border-radius: 5px;

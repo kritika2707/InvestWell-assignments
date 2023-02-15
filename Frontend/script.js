@@ -1,9 +1,9 @@
 let user_detail = [];
 let user_id = 0;
 //var hash=new Map();
-function toSubmit(){
+function toSubmit() {
     validation();
-    document.getElementById("myForm").addEventListener("submit",(event)=>{
+    document.getElementById("myForm").addEventListener("submit", (event) => {
         event.preventDefault();
     })
     var userObj = {
@@ -20,35 +20,35 @@ function toSubmit(){
     toReset();
 }
 
-function toReset(e){
+function toReset(e) {
     e.preventDefault();
     document.getElementById("myForm").reset();
 }
 
-function validation(){
+function validation() {
     let user_name = document.getElementById('user_name').value;
     let email = document.getElementById('email').value;
     let number = document.getElementById('number').value;
     let password = document.getElementById("pass").value;
-    let regEmail=/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/g;  
+    let regEmail = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/g;
     //var regPhone=/^\d{10}$/;                                        
-    var regName = /\d+$/g;  
-                                
+    var regName = /\d+$/g;
+
     if (user_name == "" || regName.test(user_name)) {
         window.alert("Please enter valid user name");
         return false;
     }
-    
+
     if (email == "" || !regEmail.test(email)) {
         window.alert("Please enter a valid e-mail address.");
         return false;
     }
-    
-    if(number.length != 10){
+
+    if (number.length != 10) {
         window.alert("Mobile number must have 10 digits!!");
         return false;
     }
-    if(password === ""){
+    if (password === "") {
         window.alert("Password can't be empty!!");
         return false;
     }
@@ -60,49 +60,49 @@ function validation(){
 function myFunction() {
     var x = document.getElementById("pass");
     if (x.type === "password") {
-      x.type = "text";
-    } 
+        x.type = "text";
+    }
     else {
-      x.type = "password";
+        x.type = "password";
     }
 }
 
-function signInDisplay(){
+function signInDisplay() {
     document.getElementById("signin_div").style.display = "block";
     document.getElementById("sign_up_form").style.display = "none";
     document.getElementById("delete_user").style.display = "none";
     document.getElementById("update_data").style.display = "none";
 }
-function signUpDisplay(){
+function signUpDisplay() {
     document.getElementById("signin_div").style.display = "none";
     document.getElementById("sign_up_form").style.display = "block";
     document.getElementById("delete_user").style.display = "none";
     document.getElementById("update_data").style.display = "none";
 }
-function deleteDisplay(){
+function deleteDisplay() {
     document.getElementById("signin_div").style.display = "none";
     document.getElementById("sign_up_form").style.display = "none";
     document.getElementById("delete_user").style.display = "block";
     document.getElementById("update_data").style.display = "none";
 }
-function updateDisplay(){
+function updateDisplay() {
     document.getElementById("signin_div").style.display = "none";
     document.getElementById("sign_up_form").style.display = "none";
     document.getElementById("delete_user").style.display = "none";
     document.getElementById("update_data").style.display = "block";
 }
 
-function getApi(){
-    
+function getApi() {
+
     let rows = [];
     $.ajax({
         url: "http://localhost:5500/fetchuser",
         type: "GET",
-        
-        success: function (result){
+
+        success: function (result) {
             rows = result;
-            let str = rows.length>0 ?
-            `<tr class = "header">
+            let str = rows.length > 0 ?
+                `<tr class = "header">
             <th>UserId</th>
             <th>User Name</th>
             <th>First Name</th>
@@ -110,7 +110,7 @@ function getApi(){
             <th>Email id</th>
             <th>Mobile Number</th></tr>`: "No data in database";
             rows.forEach((user) => {
-                str+=`<tr>
+                str += `<tr>
                 <td>${user.user_id}</td>
                 <td>${user.first_name}</td>
                 <td>${user.last_name}</td>
@@ -123,31 +123,31 @@ function getApi(){
             const output = document.getElementsByClassName('myTable')[0];
             output.innerHTML = str;
         },
-        error: function(error){
+        error: function (error) {
             console.log(error);
         }
     })
 }
 
 
-function postApi(userObj){
+function postApi(userObj) {
     $.ajax({
         url: 'http://localhost:5500/createuser',
         type: 'POST',
         //dataType:"json",
         data: userObj,
-        
-        success: function(result){
-           console.log(result);
+
+        success: function (result) {
+            console.log(result);
         },
-        error: function(){
+        error: function () {
             console.log('error');
         }
     });
 }
 
-function deleteApi(e){
-    
+function deleteApi(e) {
+
     e.preventDefault();
     const userId = parseInt(document.getElementById('deleteUserId').value);
     console.log(userId);
@@ -159,21 +159,21 @@ function deleteApi(e){
         type: 'POST',
         //dataType:"json",
         data: obj,
-        
-        success: function(result){
-           console.log(result);
+
+        success: function (result) {
+            console.log(result);
         },
-        error: function(){
+        error: function () {
             console.log('error');
         }
     });
 }
 
-document.getElementById('update-btn').addEventListener('click',updateApi);
-document.getElementById('reset-btn').addEventListener('click',toReset);
-document.getElementById('delete-btn').addEventListener('click',deleteApi);
+document.getElementById('update-btn').addEventListener('click', updateApi);
+document.getElementById('reset-btn').addEventListener('click', toReset);
+document.getElementById('delete-btn').addEventListener('click', deleteApi);
 
-function updateApi(e){
+function updateApi(e) {
     e.preventDefault();
     const fname = document.getElementById('ufname').value;
     const lname = document.getElementById('ulname').value;
@@ -199,11 +199,11 @@ function updateApi(e){
         type: 'POST',
         //dataType:"json",
         data: obj,
-        
-        success: function(result){
-           console.log(result);
+
+        success: function (result) {
+            console.log(result);
         },
-        error: function(){
+        error: function () {
             console.log('error');
         }
     });
