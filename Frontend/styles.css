@@ -35,7 +35,7 @@ hr {
     background-color: rgb(153, 118, 145);
     border: none;
 }
-
+/* css for signup button */
 #signup {
     border: none;
     font-size: 18px;
@@ -46,7 +46,7 @@ hr {
     color: antiquewhite;
     margin-top: 40px;
 }
-
+/* css for delete, fetch, update button */
 #delete-btn,
 #fetch-btn,
 #update-btn {
@@ -60,25 +60,34 @@ hr {
     width: 75px;
     text-align: center;
 }
-
+/* background color for delete-btn */
 #delete-btn {
     background-color: red;
 }
-
+/* background color for fetch-btn */
 #fetch-btn {
     background-color: coral;
 }
-
+/* background color for update-btn */
 #update-btn {
     /* margin-left: 550px; */
     background-color: green;
 }
-
+/* css for table */
 table {
     width: 100%;
-    border: 2px solid;
+    border: 2px solid rgb(104, 48, 91);
+    border-collapse: collapse;
+    margin: 50px auto;
 }
-
+th,td{
+    border: 1px solid rgb(104, 48, 91);
+    border-collapse: collapse;
+}
+th{
+    font-weight: 1000;
+}
+/* css for reset button */
 #reset-btn {
     border: none;
     font-size: 18px;
@@ -91,6 +100,7 @@ table {
     margin-top: 40px;
 }
 
+/* css for navigation bar */
 nav li {
     list-style-type: none;
     padding: 20px;
@@ -119,41 +129,36 @@ a:link {
 nav ul li a:hover {
     color: gray;
 }
-
+/* css for signin-form */
 #signin_div {
     border: 1px solid rgb(104, 48, 91);
     height: 200px;
     width: 400px;
-    margin: 20px auto;
+    margin: 70px auto;
     padding: 50px 20px;
-    border-radius: 30px;
+    border-radius: 10%;
 }
-
+/* css for label elements */
 label {
     float: left;
     color: rgb(39, 16, 37);
     font-weight: bold;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
+/* css for signin-div and input fields */
 #signin_div input {
     border: 2px solid rgb(39, 16, 37);
     border-radius: 5px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    float: right;
 }
 
-#user_name {
-    margin-left: 60px;
-}
 
-#pass {
-    margin-left: 72px;
-}
-
-#fields {
+/* css margin for login fields */
+#login_fields {
     margin: 30px 40px;
 }
-
+/* css for login button */
 #login {
     border: none;
     font-size: 18px;
@@ -162,37 +167,57 @@ label {
     border-radius: 10px;
     background-color: rgb(153, 118, 145);
     color: antiquewhite;
-
     margin-left: 175px;
 }
-
+/* css for login heading */
 #login_head {
     margin-top: 0;
 }
 
+/* css for delete user form */
 #delete_user {
-    margin: auto;
+    margin: 70px auto;
     height: 200px;
     width: 400px;
-    border: 2px solid black;
+    border: 1px solid rgb(39, 16, 37);
     text-align: center;
     border-radius: 10%;
 }
 
+/* margin for updateUser */
 #updateUser {
     margin: 45px;
 }
 
+/* css for label element for updateuser form */
 #updateUser label {
     float: left;
     color: rgb(39, 16, 37);
     font-weight: bold;
 }
 
+/* Css for update form and excluding update-btn and reset-btn */
 #updateUser input:not(#update-btn, #reset-btn),
 select {
     float: right;
     border: 2px solid rgb(39, 16, 37);
     border-radius: 5px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/* css for updata_data div */
+#update_data{
+    width: 400px;
+    margin: 70px auto;
+    border: 1px solid rgb(39, 16, 37);
+    border-radius: 10%;
+}
+
+/* css for display data div */
+#displayDiv{
+    width: 300px;
+    height: auto;
+    border: 2px solid rgb(211, 82, 82);
+    border-radius: 5px;
+    text-align: left;
+    margin: auto;
 }

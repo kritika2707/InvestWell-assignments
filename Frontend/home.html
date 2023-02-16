@@ -25,7 +25,7 @@
             <li><a href="#myTable" onclick="updateDisplay()">Update Record</a></li>
         </nav>
 
-        <!-- Sign UP page and table -->
+        <!-- Sign UP page -->
         <div class="form_div" id="sign_up_form" style="display: block;">
             <h1>Sign Up Here</h1>
             <hr>
@@ -47,14 +47,11 @@
                 <input type="submit" id="reset-btn" value="Reset">
 
             </form>
-            <!-- <div id="welcome" style="display: none;"> -->
-            <!-- <h1 id="type"></h1> -->
-            <!-- </div> -->
         </div>
 
 
 
-
+<!-- Delete user from database with userId-->
 
         <div id="delete_user" style="display: none;">
             <form id="">
@@ -63,10 +60,14 @@
                 <input type="submit" id="delete-btn" value="Delete">
             </form>
         </div>
-        <div>
+
+<!-- Display table to display data from database -->        
+        <div id='showTable' style="display: none;">
+            <h1 style="text-align: center;">Users Data</h1>
             <table class="myTable"></table>
         </div>
 
+<!-- Update user data form  -->        
         <div id="update_data" style="display: none;">
             <h1>Update record</h1>
             <hr>
@@ -87,7 +88,7 @@
                 <label for="updatepass">Password </label>
                 <input type="password" name="upass" id="upass"><br><br>
                 <input type="submit" id="update-btn" value="Update">
-                <input type="submit" id="reset-btn" value="Reset">
+                <input type="submit" id="updatereset-btn" value="Reset">
 
             </form>
             <!-- <div id="welcome" style="display: none;"> -->
@@ -96,18 +97,24 @@
         </div>
 
         <!-- SignIn form  -->
+        
         <div id="signin_div" style="display: none;">
             <h1 id="login_head" style="padding-left:50px;">Log In</h1>
-            <form id="fields" name="second">
+            <hr>
+            <form id="login_fields" name="second">
 
                 <label for="user_name1">User Name </label>
-                <input type="text" name="user_name1" id="user_name1"><br><br>
+                <input type="text" name="user_name1" id="loginuser_name"><br><br>
                 <label for="pass1">Password </label>
-                <input type="password" name="pass1" id="pass1"><br><br>
+                <input type="password" name="pass1" id="login_pass"><br><br>
             </form>
-            <button type="button" id="login" onclick="toVerify();">Log In</button>
+            <button id="login">Log In</button>
+        </div>
+        <div id="displayDiv" style="display: none;">
+
         </div>
     </body>
+    <!-- attached frontened javascript file -->
     <script src="script.js"></script>
 
 </html>

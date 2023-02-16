@@ -72,27 +72,36 @@ function signInDisplay() {
     document.getElementById("sign_up_form").style.display = "none";
     document.getElementById("delete_user").style.display = "none";
     document.getElementById("update_data").style.display = "none";
+    document.getElementById('showTable').style.display = "none";
 }
 function signUpDisplay() {
     document.getElementById("signin_div").style.display = "none";
     document.getElementById("sign_up_form").style.display = "block";
     document.getElementById("delete_user").style.display = "none";
     document.getElementById("update_data").style.display = "none";
+    document.getElementById('showTable').style.display = "none";
 }
 function deleteDisplay() {
     document.getElementById("signin_div").style.display = "none";
     document.getElementById("sign_up_form").style.display = "none";
     document.getElementById("delete_user").style.display = "block";
     document.getElementById("update_data").style.display = "none";
+    document.getElementById('showTable').style.display = "none";
 }
 function updateDisplay() {
     document.getElementById("signin_div").style.display = "none";
     document.getElementById("sign_up_form").style.display = "none";
     document.getElementById("delete_user").style.display = "none";
     document.getElementById("update_data").style.display = "block";
+    document.getElementById('showTable').style.display = "none";
 }
 
 function getApi() {
+    document.getElementById('showTable').style.display = "block";
+    document.getElementById("signin_div").style.display = "none";
+    document.getElementById("sign_up_form").style.display = "none";
+    document.getElementById("delete_user").style.display = "none";
+    document.getElementById("update_data").style.display = "none";
 
     let rows = [];
     $.ajax({
@@ -103,7 +112,6 @@ function getApi() {
             rows = result;
             let str = rows.length > 0 ?
                 `<tr class = "header">
-            <th>UserId</th>
             <th>User Name</th>
             <th>First Name</th>
             <th>Last Name</th>
@@ -111,7 +119,6 @@ function getApi() {
             <th>Mobile Number</th></tr>`: "No data in database";
             rows.forEach((user) => {
                 str += `<tr>
-                <td>${user.user_id}</td>
                 <td>${user.first_name}</td>
                 <td>${user.last_name}</td>
                 <td>${user.user_name}</td>
@@ -201,6 +208,7 @@ function updateApi(e) {
         data: obj,
 
         success: function (result) {
+            //displayDetails(result);
             console.log(result);
         },
         error: function () {
@@ -208,4 +216,45 @@ function updateApi(e) {
         }
     });
     toReset();
+}
+document.getElementById('login').addEventListener('click',loginApi);
+function loginApi(e){
+    e.preventDefault();
+
+    const user_name = document.getElementById('loginuser_name').value;
+    const pass = document.getElementById('login_pass').value;
+    const obj = {
+        user_name,
+        pass
+    }
+    let rows = [];
+    $.ajax({
+        url: 'http://localhost:5500/login',
+        type: 'POST',
+        //dataType:"json",
+        data: obj,
+        success: function (result) {
+            
+            if(typeof(result)=== "string")
+            {
+                alert(result);
+            }
+            else{
+            document.getElementById('displayDiv').style.display = "block";
+            document.getElementById("signin_div").style.display = "none";
+            document.getElementById("sign_up_form").style.display = "none";
+            document.getElementById("delete_user").style.display = "none";
+            document.getElementById("update_data").style.display = "none";
+            let display = `User Name : ${result.userName}<br> First Name : ${result.firstName}<br> Last Name : ${result.lastName}<br> Email : ${result.email}<br> Phone Number : ${result.phone_no}<br>`;    
+            document.getElementById('displayDiv').innerHTML = display;
+
+        }
+            
+            //console.log("Ajax called:",result);
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+    document.getElementById('login_fields').reset();
 }

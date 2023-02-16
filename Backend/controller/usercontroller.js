@@ -1,4 +1,4 @@
-const { servicesFetchData, servicesInsertData, servicesUpdateData, servicesDeleteData } = require('../services/userservices');
+const { servicesFetchData, servicesInsertData, servicesUpdateData, servicesDeleteData, servicesCheckData } = require('../services/userservices');
 
 const path = require("path");
 
@@ -40,10 +40,45 @@ const controlDeleteData = (req, res) => {
     return servicesDeleteData(updateUserData.userId);
 }
 
+const controlCheckData = async (req,res)=>{
+    const checkUserData  = req.body;
+    //if(checkUserData.userName && checkUserData.pass)
+    const result = await servicesCheckData(checkUserData);
+    //console.log("Result:" , result);
+    if(result.length == 0)
+    {
+        res.send("No user found!!");
+    }
+    else if(checkUserData.user_name === result[0].user_name && checkUserData.pass === result[0].password)
+    {
+        let sendData = {
+            userName: result[0].user_name,
+            firstName: result[0].first_name,
+            lastName: result[0].last_name,
+            email: result[0].email_id,
+            phone_no: result[0].mobile_number
+        }
+        res.send(sendData);
+    }
+    else if(checkUserData.user_name === result[0].user_name && checkUserData.pass != result[0].password)
+    {
+        res.send("Incorrect password!!");
+    }
+    else if(checkUserData.user_name != result[0].user_name)
+    {
+        res.send("Username doesn't exist! SignUp first.");
+    }
+    else
+    {
+        console.log(error);
+    }
+}
+
 module.exports = {
     showForm,
     controlFetchData,
     controlInsertData,
     controlUpdateData,
-    controlDeleteData
+    controlDeleteData,
+    controlCheckData
 }

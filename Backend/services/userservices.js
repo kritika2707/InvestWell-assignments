@@ -1,5 +1,5 @@
 // this file is for services functions....
-const { fetchData, insertData, updateData, deleteData } = require('../repositories/userdb');
+const { fetchData, insertData, updateData, deleteData, checkData } = require('../repositories/userdb');
 
 //callback is used here
 /* const servicesFetchData = (cb)=>{ */
@@ -40,10 +40,22 @@ const servicesDeleteData = (id) => {
     const sqlQuery = `delete from user where user_id = ${id}`;
     return deleteData(sqlQuery);
 }
-
+const servicesCheckData = async (checkUserData) => {
+    const sqlQuery = `select * from user where user_name = "${checkUserData.user_name}"`;
+    const result = await checkData(sqlQuery);
+    //console.log("Service console:",result)
+    return new Promise((resolve) => {
+        resolve(result);
+    })
+}
+// const servicesCheckData = (checkUserData)=>{
+    // const sqlQuery = `select * from user where user_name = "${checkUserData.userName}"`;
+    // return checkData(sqlQuery);
+// }
 module.exports = {
     servicesFetchData,
     servicesInsertData,
     servicesUpdateData,
-    servicesDeleteData
+    servicesDeleteData,
+    servicesCheckData
 }
