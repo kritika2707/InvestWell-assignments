@@ -45,6 +45,7 @@ const controlCheckData = async (req,res)=>{
     //if(checkUserData.userName && checkUserData.pass)
     const result = await servicesCheckData(checkUserData);
     //console.log("Result:" , result);
+    //console.log(result.length);
     if(result.length == 0)
     {
         res.send("No user found!!");
@@ -63,10 +64,6 @@ const controlCheckData = async (req,res)=>{
     else if(checkUserData.user_name === result[0].user_name && checkUserData.pass != result[0].password)
     {
         res.send("Incorrect password!!");
-    }
-    else if(checkUserData.user_name != result[0].user_name)
-    {
-        res.send("Username doesn't exist! SignUp first.");
     }
     else
     {
