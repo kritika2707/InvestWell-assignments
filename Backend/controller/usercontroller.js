@@ -1,3 +1,4 @@
+//this file is for controlling functions for server
 const { servicesFetchData, servicesInsertData, servicesUpdateData, servicesDeleteData, servicesCheckData } = require('../services/userservices');
 const path = require("path");
 var CryptoJS = require("crypto-js");
