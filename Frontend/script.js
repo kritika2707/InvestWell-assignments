@@ -1,8 +1,10 @@
 let user_detail = [];
 let user_id = 0;
 //var hash=new Map();
-function toSubmit() {
-    validation();
+document.getElementById("signup").addEventListener("click", toSubmit)
+function toSubmit(e) {
+    e.preventDefault();
+    //console.log('Hello')
     document.getElementById("myForm").addEventListener("submit", (event) => {
         event.preventDefault();
     })
@@ -13,51 +15,71 @@ function toSubmit() {
         email: document.querySelector("#email").value,
         number: document.querySelector("#number").value,
         pass: document.querySelector("#pass").value,
+        cnfpass: document.querySelector('#cnfpass').value
     }
     user_id++;
     user_detail.push(userObj);
     postApi(userObj);
-    toReset();
+    // toReset();
+    
+
+}
+function toReset() {
+    document.forms.signupform.fname.value = "";
+    document.forms.signupform.lname.value = "";
+    document.forms.signupform.user_name.value = "";
+    document.forms.signupform.email.value = "";
+    document.forms.signupform.number.value = "";
+    document.forms.signupform.pass.value = "";
+    document.forms.signupform.cnfpass.value = "";
 }
 
-function toReset(e) {
-    e.preventDefault();
-    document.getElementById("myForm").reset();
-}
 
-function validation() {
-    let user_name = document.getElementById('user_name').value;
-    let email = document.getElementById('email').value;
-    let number = document.getElementById('number').value;
-    let password = document.getElementById("pass").value;
-    let regEmail = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/g;
+// function validation() {
+    // let user_name = document.getElementById('user_name').value;
+    // let email = document.getElementById('email').value;
+    // let number = document.getElementById('number').value;
+    // let password = document.getElementById("pass").value;
+    // let cnfpassword = document.getElementById("cnfpass").value;
+    // let regEmail = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/g;
     //var regPhone=/^\d{10}$/;                                        
-    var regName = /\d+$/g;
-
-    if (user_name == "" || regName.test(user_name)) {
-        window.alert("Please enter valid user name");
-        return false;
-    }
-
-    if (email == "" || !regEmail.test(email)) {
-        window.alert("Please enter a valid e-mail address.");
-        return false;
-    }
-
-    if (number.length != 10) {
-        window.alert("Mobile number must have 10 digits!!");
-        return false;
-    }
-    if (password === "") {
-        window.alert("Password can't be empty!!");
-        return false;
-    }
-    else if (password.length < 8 || password.length > 16) {
-        window.alert("Password must 8 to 16 characters long");
-        return false;
-    }
-}
-function myFunction() {
+    // var regName = /^[a-zA-Z0-9]+$/;
+    // var regPass = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,16}$/;
+// 
+    // if (user_name == "" || regName.test(user_name)) {
+        // window.alert("Please enter valid user name");
+        // return false;
+    // }
+// 
+    // if (email == "" || !regEmail.test(email)) {
+        // window.alert("Please enter a valid e-mail address.");
+        // return false;
+    // }
+// 
+    // if (number.length != 10) {
+        // window.alert("Mobile number must have 10 digits!!");
+        // return false;
+    // }
+    // if (password === "") {
+        // window.alert("Password can't be empty!!");
+        // return false;
+    // }
+    // else if (password.length < 8 || password.length > 16) {
+        // window.alert("Password must 8 to 16 characters long");
+        // return false;
+    // }
+    // else if(!regPass.test(password)){
+        // window.alert("Password must contain atleast <br> one number <br> one special character <br> one upper case alphabet <br> one lower case alphabet");
+        // return false;
+    // }
+    // if(cnfpassword != password){
+        // window.alert("Password doesn't match!");
+        // return false;
+    // }
+    // return true;
+// }
+document.getElementById('showpass').addEventListener('change',showPass)
+function showPass() {
     var x = document.getElementById("pass");
     if (x.type === "password") {
         x.type = "text";
@@ -73,6 +95,7 @@ function signInDisplay() {
     document.getElementById("delete_user").style.display = "none";
     document.getElementById("update_data").style.display = "none";
     document.getElementById('showTable').style.display = "none";
+    document.getElementById('displayDiv').style.display = "none";
 }
 function signUpDisplay() {
     document.getElementById("signin_div").style.display = "none";
@@ -80,6 +103,7 @@ function signUpDisplay() {
     document.getElementById("delete_user").style.display = "none";
     document.getElementById("update_data").style.display = "none";
     document.getElementById('showTable').style.display = "none";
+    document.getElementById('displayDiv').style.display = "none";
 }
 function deleteDisplay() {
     document.getElementById("signin_div").style.display = "none";
@@ -87,6 +111,7 @@ function deleteDisplay() {
     document.getElementById("delete_user").style.display = "block";
     document.getElementById("update_data").style.display = "none";
     document.getElementById('showTable').style.display = "none";
+    document.getElementById('displayDiv').style.display = "none";
 }
 function updateDisplay() {
     document.getElementById("signin_div").style.display = "none";
@@ -94,6 +119,7 @@ function updateDisplay() {
     document.getElementById("delete_user").style.display = "none";
     document.getElementById("update_data").style.display = "block";
     document.getElementById('showTable').style.display = "none";
+    document.getElementById('displayDiv').style.display = "none";
 }
 
 function getApi() {
@@ -102,6 +128,7 @@ function getApi() {
     document.getElementById("sign_up_form").style.display = "none";
     document.getElementById("delete_user").style.display = "none";
     document.getElementById("update_data").style.display = "none";
+    document.getElementById('displayDiv').style.display = "none";
 
     let rows = [];
     $.ajax({
@@ -146,12 +173,17 @@ function postApi(userObj) {
 
         success: function (result) {
             console.log(result);
+            // if(typeof(result)=== "string")
+            // {
+                alert(result);
+            //}
         },
-        error: function () {
-            console.log('error');
+        error: function (error) {
+            console.log(error);
         }
-    });
-}
+    }
+    )};
+
 
 function deleteApi(e) {
 
@@ -223,18 +255,21 @@ function loginApi(e){
 
     const user_name = document.getElementById('loginuser_name').value;
     const pass = document.getElementById('login_pass').value;
+    // if(user_name.length == 0 || pass.length == 0)
+    // {
+        // return alert("Provide the login details!!");
+    // }
     const obj = {
         user_name,
         pass
     }
-    let rows = [];
     $.ajax({
         url: 'http://localhost:5500/login',
         type: 'POST',
         //dataType:"json",
         data: obj,
         success: function (result) {
-            
+            console.log(result);
             if(typeof(result)=== "string")
             {
                 alert(result);
@@ -245,12 +280,18 @@ function loginApi(e){
             document.getElementById("sign_up_form").style.display = "none";
             document.getElementById("delete_user").style.display = "none";
             document.getElementById("update_data").style.display = "none";
-            let display = `User Name : ${result.userName}<br> First Name : ${result.firstName}<br> Last Name : ${result.lastName}<br> Email : ${result.email}<br> Phone Number : ${result.phone_no}<br>`;    
+            let username = result[0].user_name;
+            let firstname = result[0].first_name;
+            let lastname = result[0].last_name
+            let emailid = result[0].email_id;
+            let contact = result[0].mobile_number;
+
+            let display = "<h1 id='welcome'>Welcome " +username+ "!! </h1> <br><br> <div id='afterLogin'> First Name :" +firstname+"<br> Last Name : "+lastname+"<br> Email : "+emailid+"<br> Phone Number : "+contact+"<br><div>";    
             document.getElementById('displayDiv').innerHTML = display;
 
         }
             
-            //console.log("Ajax called:",result);
+            // console.log("Ajax called:",result);
         },
         error: function (error) {
             console.log(error);

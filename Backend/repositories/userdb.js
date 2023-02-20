@@ -33,44 +33,48 @@ const fetchData = async (sqlQuery) => {
     })
 }
 
-const insertData = (sqlQuery) => {
-    return connection.query(
+const insertData = async (sqlQuery) => {
+    return new Promise((resolve,reject)=>{
+        connection.query(
         sqlQuery,
-        (err, result) => {
+        (err, res) => {
             if (err) {
-                return console.log(err);
+                reject(err);
             }
             else {
-                console.log("New record inserted!!");
+                resolve("New record inserted!!");
             }
         })
-}
+    })}
 
-const updateData = (sqlQuery) => {
-    return connection.query(
+const updateData = async (sqlQuery) => {
+    return new Promise((resolve,reject) =>{
+        connection.query(
         sqlQuery,
         (err) => {
             if (err) {
-                return console.log(err);
+                reject(err);
             }
             else {
-                console.log("Record updated!!");
+                resolve("Record updated!!");
             }
         })
 }
+)}
 
-const deleteData = (sqlQuery) => {
-    return connection.query(
+const deleteData = async (sqlQuery) => {
+    return new Promise((resolve,reject)=>{connection.query(
         sqlQuery,
         (err, result) => {
             if (err) {
-                return console.log(err);
+                reject(err);
             }
             else {
-                console.log("Record deleted!!");
+                resolve("Record deleted!!");
             }
         })
 }
+)}
 
 const checkData = async (sqlQuery) => {
 

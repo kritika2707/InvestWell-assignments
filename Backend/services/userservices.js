@@ -1,5 +1,6 @@
 // this file is for services functions....
 const { fetchData, insertData, updateData, deleteData, checkData } = require('../repositories/userdb');
+const bcrypt = require("bcrypt")
 
 //callback is used here
 /* const servicesFetchData = (cb)=>{ */
@@ -26,22 +27,31 @@ const servicesFetchData = async () => {
 /*     //return result; */
 /* }); */
 
-const servicesInsertData = (newUser) => {
+const servicesInsertData = async (newUser) => {
     const sqlQuery = `insert into user(first_name,last_name,user_name,email_id,mobile_number,password) values("${newUser.fname}","${newUser.lname}","${newUser.user_name}","${newUser.email}",${newUser.number},"${newUser.pass}")`;
-    return insertData(sqlQuery);
+    const result = await insertData(sqlQuery);
+    return new Promise((resolve) => {
+        resolve(result);
+    })
 }
 
-const servicesUpdateData = (id, updateUserData) => {
+const servicesUpdateData = async (id, updateUserData) => {
     const sqlQuery = `update user set first_name = "${updateUserData.fname}" , last_name = "${updateUserData.lname}", user_name = "${updateUserData.user_name}", email_id = "${updateUserData.email}", mobile_number = "${updateUserData.num}", password = "${updateUserData.pass}" where user_id = ${id}`;
-    return updateData(sqlQuery);
+    const result = await updateData(sqlQuery);
+    return new Promise((resolve)=>{
+        resolve(result);
+    })
 }
 
-const servicesDeleteData = (id) => {
+const servicesDeleteData = async (id) => {
     const sqlQuery = `delete from user where user_id = ${id}`;
-    return deleteData(sqlQuery);
+    const result = await deleteData(sqlQuery);
+    return new Promise((resolve)=>{
+        resolve(result);
+    })
 }
 const servicesCheckData = async (checkUserData) => {
-    const sqlQuery = `select * from user where user_name = "${checkUserData.user_name}"`;
+    const sqlQuery = `select * from user where user_name = "${checkUserData.user_name}" and password = "${checkUserData.pass}"`;
     const result = await checkData(sqlQuery);
     //console.log("Service console:",result)
     return new Promise((resolve) => {

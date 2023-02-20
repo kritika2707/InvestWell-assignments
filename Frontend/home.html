@@ -29,7 +29,7 @@
         <div class="form_div" id="sign_up_form" style="display: block;">
             <h1>Sign Up Here</h1>
             <hr>
-            <form id="myForm">
+            <form id="myForm" name="signupform">
                 <label for="fname">First Name </label>
                 <input type="text" id="fname" name="fname"><br><br>
                 <label for="lname">Last Name </label>
@@ -41,9 +41,13 @@
                 <label for="number">Mobile Number </label>
                 <input type="number" name="number" id="number"><br><br>
                 <label for="pass">Password </label>
-                <input type="password" name="pass" id="pass"><br><br>
+                <input type="password" name="pass" id="pass">
+                <input type="checkbox" id="showpass"><br><br>
+                <label for="cnfpass">Confirm Password</label>
+                <input type="password" name="cnfpass" id="cnfpass"><br><br>
+                
 
-                <input type="submit" id="signup" onclick="toSubmit()" value="Submit">
+                <input type="submit" id="signup" value="Submit">
                 <input type="submit" id="reset-btn" value="Reset">
 
             </form>
@@ -76,17 +80,17 @@
                 <input type="text" id="updateUserId" placeholder="User Id" name="updateUserId"><br><br>
 
                 <label for="ufname">First Name </label>
-                <input type="text" name="ufname" id="ufname"><br><br>
+                <input type="text" name="ufname" id="ufname" required><br><br>
                 <label for="updatelname">Last Name </label>
-                <input type="text" name="ulname" id="ulname"><br><br>
+                <input type="text" name="ulname" id="ulname" required><br><br>
                 <label for="updateuser_name">User Name </label>
-                <input type="text" name="uusername" id="uusername"><br><br>
+                <input type="text" name="uusername" id="uusername" required><br><br>
                 <label for="updateemail">Email id </label>
-                <input type="email" name="uemail" id="uemail"><br><br>
+                <input type="text" name="uemail" id="uemail" disabled><br><br>
                 <label for="updatenumber">Mobile Number </label>
-                <input type="number" name="unumber" id="unumber"><br><br>
+                <input type="number" name="unumber" id="unumber" required><br><br>
                 <label for="updatepass">Password </label>
-                <input type="password" name="upass" id="upass"><br><br>
+                <input type="password" name="upass" id="upass"required><br><br>
                 <input type="submit" id="update-btn" value="Update">
                 <input type="submit" id="updatereset-btn" value="Reset">
 
@@ -111,6 +115,7 @@
             <button id="login">Log In</button>
         </div>
         <div id="displayDiv" style="display: none;">
+            
 
         </div>
     </body>

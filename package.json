@@ -17,12 +17,14 @@
   },
   "homepage": "https://github.com/kritika2707/InvestWell-assignments#readme",
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "body-parser": "^1.20.1",
+    "crypto": "^1.0.1",
     "express": "^4.18.2",
+    "joi": "^17.7.1",
     "mysql2": "^3.1.0",
     "nodemon": "^2.0.20"
   },
   "keywords": [],
-  "devDependencies": {},
   "description": ""
 }

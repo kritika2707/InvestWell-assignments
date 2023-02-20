@@ -1,6 +1,6 @@
 const { servicesFetchData, servicesInsertData, servicesUpdateData, servicesDeleteData, servicesCheckData } = require('../services/userservices');
-
 const path = require("path");
+
 
 const showForm = (req, res) => {
     res.sendFile(path.join(__dirname, "../..", "frontend", "home.html"));
@@ -20,24 +20,27 @@ const controlFetchData = async (req, res) => {
     res.send(result);
 }
 
-const controlInsertData = (req, res) => {
+const controlInsertData = async (req, res) => {
     const newUser = req.body;
 
     // implement here backend validation 
-
-    return servicesInsertData(newUser);
+    
+    const result = await servicesInsertData(newUser);
+    res.send(result);
 }
 
-const controlUpdateData = (req, res) => {
+const controlUpdateData = async (req, res) => {
 
     const updateUserData = req.body;
     //console.log(updateUserData);
-    return servicesUpdateData(updateUserData.uUserId, updateUserData);
+    const result = await servicesUpdateData(updateUserData.uUserId, updateUserData);
+    res.send(result);
 }
 
-const controlDeleteData = (req, res) => {
+const controlDeleteData = async (req, res) => {
     const updateUserData = req.body;
-    return servicesDeleteData(updateUserData.userId);
+    const result = await servicesDeleteData(updateUserData.userId);
+    res.send(result);
 }
 
 const controlCheckData = async (req,res)=>{
@@ -46,30 +49,26 @@ const controlCheckData = async (req,res)=>{
     const result = await servicesCheckData(checkUserData);
     //console.log("Result:" , result);
     //console.log(result.length);
+    // if(checkUserData.length == 0){
+        // res.send("Enter required fields!");
+    // }
     if(result.length == 0)
     {
-        res.send("No user found!!");
+        return res.send("Invalid Credentials!!");
     }
-    else if(checkUserData.user_name === result[0].user_name && checkUserData.pass === result[0].password)
-    {
-        let sendData = {
-            userName: result[0].user_name,
-            firstName: result[0].first_name,
-            lastName: result[0].last_name,
-            email: result[0].email_id,
-            phone_no: result[0].mobile_number
-        }
-        res.send(sendData);
-    }
-    else if(checkUserData.user_name === result[0].user_name && checkUserData.pass != result[0].password)
-    {
-        res.send("Incorrect password!!");
-    }
-    else
-    {
-        console.log(error);
-    }
+    // else
+    // {
+        // let sendData = {
+            // userName: result[0].user_name,
+            // firstName: result[0].first_name,
+            // lastName: result[0].last_name,
+            // email: result[0].email_id,
+            // phone_no: result[0].mobile_number
+        // }
+        res.send(result);
+    //}
 }
+
 
 module.exports = {
     showForm,
