@@ -34,6 +34,7 @@ const controlUpdateData = async (req, res) => {
     const updateUserData = req.body;
     //console.log(updateUserData);
     const result = await servicesUpdateData(updateUserData.uUserId, updateUserData);
+
     res.send(result);
 }
 

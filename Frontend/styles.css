@@ -21,7 +21,7 @@ h1 {
     font-weight: bold;
 }
 
-#myForm input:not(#signup),
+#myForm input:not(#signup, #reset-btn),
 select {
     float: right;
     border: 2px solid rgb(39, 16, 37);
@@ -59,6 +59,7 @@ hr {
     margin: auto;
     width: 75px;
     text-align: center;
+    margin-top: 20px;
 }
 /* background color for delete-btn */
 #delete-btn {
@@ -89,15 +90,18 @@ th{
 }
 /* css for reset button */
 #reset-btn {
-    border: none;
     font-size: 18px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    padding: 6px 12px;
+    padding: 8px 12px;
     border-radius: 10px;
     background-color: rgb(219, 76, 76);
     color: antiquewhite;
-    margin-left: 120px;
-    margin-top: 40px;
+    margin-left: 150px;
+    margin-top: 40px; 
+    border-left-width: 0px;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
 }
 
 /* css for navigation bar */
@@ -197,7 +201,7 @@ label {
 }
 
 /* Css for update form and excluding update-btn and reset-btn */
-#updateUser input:not(#update-btn, #reset-btn),
+#updateUser input:not(#update-btn, #updatereset-btn),
 select {
     float: right;
     border: 2px solid rgb(39, 16, 37);
@@ -233,4 +237,16 @@ select {
 #welcome{
     text-align: center;
     font-size: 70px;
+}
+
+#updatereset-btn{
+    border: none;
+    font-size: 18px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 8px 12px;
+    border-radius: 10px;
+    background-color: rgb(219, 76, 76);
+    color: antiquewhite;
+    margin-left: 120px;
+    margin-top: 20px;
 }

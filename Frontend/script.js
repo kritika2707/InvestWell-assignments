@@ -4,6 +4,7 @@ let user_id = 0;
 document.getElementById("signup").addEventListener("click", toSubmit)
 function toSubmit(e) {
     e.preventDefault();
+    if(validation()){
     //console.log('Hello')
     document.getElementById("myForm").addEventListener("submit", (event) => {
         event.preventDefault();
@@ -20,11 +21,6 @@ function toSubmit(e) {
     user_id++;
     user_detail.push(userObj);
     postApi(userObj);
-    // toReset();
-    
-
-}
-function toReset() {
     document.forms.signupform.fname.value = "";
     document.forms.signupform.lname.value = "";
     document.forms.signupform.user_name.value = "";
@@ -32,52 +28,53 @@ function toReset() {
     document.forms.signupform.number.value = "";
     document.forms.signupform.pass.value = "";
     document.forms.signupform.cnfpass.value = "";
+}   
+
 }
 
+function validation() {
+    let user_name = document.getElementById('user_name').value;
+    let email = document.getElementById('email').value;
+    let number = document.getElementById('number').value;
+    let password = document.getElementById("pass").value;
+    let cnfpassword = document.getElementById("cnfpass").value;
+    let regEmail = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/g;
+    var regPhone=/^\d{10}$/;                                        
+    var regName = /^[a-zA-Z0-9]+$/;
+    var regPass = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,16}$/;
 
-// function validation() {
-    // let user_name = document.getElementById('user_name').value;
-    // let email = document.getElementById('email').value;
-    // let number = document.getElementById('number').value;
-    // let password = document.getElementById("pass").value;
-    // let cnfpassword = document.getElementById("cnfpass").value;
-    // let regEmail = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/g;
-    //var regPhone=/^\d{10}$/;                                        
-    // var regName = /^[a-zA-Z0-9]+$/;
-    // var regPass = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,16}$/;
-// 
-    // if (user_name == "" || regName.test(user_name)) {
-        // window.alert("Please enter valid user name");
-        // return false;
-    // }
-// 
-    // if (email == "" || !regEmail.test(email)) {
-        // window.alert("Please enter a valid e-mail address.");
-        // return false;
-    // }
-// 
-    // if (number.length != 10) {
-        // window.alert("Mobile number must have 10 digits!!");
-        // return false;
-    // }
-    // if (password === "") {
-        // window.alert("Password can't be empty!!");
-        // return false;
-    // }
-    // else if (password.length < 8 || password.length > 16) {
-        // window.alert("Password must 8 to 16 characters long");
-        // return false;
-    // }
-    // else if(!regPass.test(password)){
-        // window.alert("Password must contain atleast <br> one number <br> one special character <br> one upper case alphabet <br> one lower case alphabet");
-        // return false;
-    // }
-    // if(cnfpassword != password){
-        // window.alert("Password doesn't match!");
-        // return false;
-    // }
-    // return true;
-// }
+    if (user_name == "" || regName.test(user_name)) {
+        window.alert("Please enter valid user name");
+        return false;
+    }
+
+    if (email == "" || !regEmail.test(email)) {
+        window.alert("Please enter a valid e-mail address.");
+        return false;
+    }
+
+    if (number.length != 10) {
+        window.alert("Mobile number must have 10 digits!!");
+        return false;
+    }
+    if (password === "") {
+        window.alert("Password can't be empty!!");
+        return false;
+    }
+    else if (password.length < 8 || password.length > 16) {
+        window.alert("Password must 8 to 16 characters long");
+        return false;
+    }
+    else if(!regPass.test(password)){
+        window.alert("Password must contain atleast <br> one number <br> one special character <br> one upper case alphabet <br> one lower case alphabet");
+        return false;
+    }
+    if(cnfpassword != password){
+        window.alert("Password doesn't match!");
+        return false;
+    }
+    return true;
+}
 document.getElementById('showpass').addEventListener('change',showPass)
 function showPass() {
     var x = document.getElementById("pass");
@@ -96,6 +93,10 @@ function signInDisplay() {
     document.getElementById("update_data").style.display = "none";
     document.getElementById('showTable').style.display = "none";
     document.getElementById('displayDiv').style.display = "none";
+    document.getElementById('delete').style.display = "none";
+    document.getElementById('update').style.display = "none";
+    document.getElementById('show').style.display = "none";
+    document.getElementById('signUpD').style.display = "block";
 }
 function signUpDisplay() {
     document.getElementById("signin_div").style.display = "none";
@@ -188,7 +189,7 @@ function postApi(userObj) {
 function deleteApi(e) {
 
     e.preventDefault();
-    const userId = parseInt(document.getElementById('deleteUserId').value);
+    const userId = document.getElementById('deleteUserId').value;
     console.log(userId);
     const obj = {
         userId
@@ -200,7 +201,7 @@ function deleteApi(e) {
         data: obj,
 
         success: function (result) {
-            console.log(result);
+            alert(result);
         },
         error: function () {
             console.log('error');
@@ -209,7 +210,7 @@ function deleteApi(e) {
 }
 
 document.getElementById('update-btn').addEventListener('click', updateApi);
-document.getElementById('reset-btn').addEventListener('click', toReset);
+document.getElementById('updatereset-btn').addEventListener('click', updateReset);
 document.getElementById('delete-btn').addEventListener('click', deleteApi);
 
 function updateApi(e) {
@@ -221,7 +222,7 @@ function updateApi(e) {
     const num = document.getElementById('unumber').value;
     const pass = document.getElementById('upass').value;
     //console.log("HI");
-    const uUserId = parseInt(document.getElementById('updateUserId').value);
+    const uUserId = document.getElementById('updateUserId').value;
     //console.log(uUserId);
     const obj = {
         uUserId,
@@ -232,7 +233,7 @@ function updateApi(e) {
         num,
         pass
     }
-    console.log(obj);
+    //console.log(obj);
     $.ajax({
         url: 'http://localhost:5500/updateuser',
         type: 'POST',
@@ -241,13 +242,29 @@ function updateApi(e) {
 
         success: function (result) {
             //displayDetails(result);
-            console.log(result);
+            alert(result);
         },
-        error: function () {
-            console.log('error');
+        error: function (error) {
+            console.log(error);
         }
     });
-    toReset();
+    document.forms.updateform.updateUserId.value = "";
+    document.forms.updateform.ufname.value = "";
+    document.forms.updateform.ulname.value = "";
+    document.forms.updateform.uusername.value = "";
+    document.forms.updateform.uemail.value = "";
+    document.forms.updateform.unumber.value = "";
+    document.forms.updateform.upass.value = "";
+}
+
+function updateReset(){
+    document.forms.updateform.updateUserId.value = "";
+    document.forms.updateform.ufname.value = "";
+    document.forms.updateform.ulname.value = "";
+    document.forms.updateform.uusername.value = "";
+    document.forms.updateform.uemail.value = "";
+    document.forms.updateform.unumber.value = "";
+    document.forms.updateform.upass.value = "";
 }
 document.getElementById('login').addEventListener('click',loginApi);
 function loginApi(e){
@@ -288,7 +305,12 @@ function loginApi(e){
 
             let display = "<h1 id='welcome'>Welcome " +username+ "!! </h1> <br><br> <div id='afterLogin'> First Name :" +firstname+"<br> Last Name : "+lastname+"<br> Email : "+emailid+"<br> Phone Number : "+contact+"<br><div>";    
             document.getElementById('displayDiv').innerHTML = display;
-
+            document.forms.second.user_name1.value = "";
+            document.forms.second.pass1.value = "";
+            document.getElementById('delete').style.display = "block";
+            document.getElementById('update').style.display = "block";
+            document.getElementById('show').style.display = "block";
+            document.getElementById('signUpD').style.display = "none";
         }
             
             // console.log("Ajax called:",result);

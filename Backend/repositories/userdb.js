@@ -51,9 +51,9 @@ const updateData = async (sqlQuery) => {
     return new Promise((resolve,reject) =>{
         connection.query(
         sqlQuery,
-        (err) => {
-            if (err) {
-                reject(err);
+        (err,result) => {
+            if (result.affectedRows == 0) {
+                resolve("UserId doesn't exist!!");
             }
             else {
                 resolve("Record updated!!");

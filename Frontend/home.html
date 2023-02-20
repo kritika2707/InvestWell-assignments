@@ -15,14 +15,14 @@
     <body>
         <!-- creating navigation bar for home page -->
         <nav id="header">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li><a href="#sign_up_form" onclick="signUpDisplay()">Sign up</a></li>
-            <li><a href="#signin_div" onclick="signInDisplay()">Sign in</a></li>
-            <li><a href="#delete_user" onclick="deleteDisplay()">Delete record</a></li>
-            <li><a href="#myTable" onclick="getApi()">Show</a></li>
-            <li><a href="#myTable" onclick="updateDisplay()">Update Record</a></li>
+            <li id="home"><a href="#">Home</a></li>
+            <li id="about"><a href="#">About</a></li>
+            <li id="contact"><a href="#">Contact Us</a></li>
+            <li id="signUpD"><a href="#sign_up_form" onclick="signUpDisplay()">Sign up</a></li>
+            <li id="signInD"><a href="#signin_div" onclick="signInDisplay()">Sign in</a></li>
+            <li style="display: none;" id="delete"><a href="#delete_user" onclick="deleteDisplay()">Delete record</a></li>
+            <li id="show" style="display: none;"><a href="#myTable" onclick="getApi()">Show</a></li>
+            <li style="display: none;" id="update"><a href="#myTable" onclick="updateDisplay()">Update Record</a></li>
         </nav>
 
         <!-- Sign UP page -->
@@ -31,20 +31,20 @@
             <hr>
             <form id="myForm" name="signupform">
                 <label for="fname">First Name </label>
-                <input type="text" id="fname" name="fname"><br><br>
+                <input type="text" id="fname" name="fname" required><br><br>
                 <label for="lname">Last Name </label>
-                <input type="text" id="lname" name="lname"><br><br>
+                <input type="text" id="lname" name="lname" required><br><br>
                 <label for="user_name">User Name </label>
-                <input type="text" name="user_name" id="user_name"><br><br>
+                <input type="text" name="user_name" id="user_name" required><br><br>
                 <label for="email">Email id </label>
-                <input type="email" name="email" id="email"><br><br>
+                <input type="email" name="email" id="email" required><br><br>
                 <label for="number">Mobile Number </label>
-                <input type="number" name="number" id="number"><br><br>
+                <input type="number" name="number" id="number" required><br><br>
                 <label for="pass">Password </label>
-                <input type="password" name="pass" id="pass">
+                <input type="password" name="pass" id="pass" required>
                 <input type="checkbox" id="showpass"><br><br>
                 <label for="cnfpass">Confirm Password</label>
-                <input type="password" name="cnfpass" id="cnfpass"><br><br>
+                <input type="password" name="cnfpass" id="cnfpass" required><br><br>
                 
 
                 <input type="submit" id="signup" value="Submit">
@@ -60,7 +60,7 @@
         <div id="delete_user" style="display: none;">
             <form id="">
                 <h1>Delete User</h1><br><br>
-                <input type="text" id="deleteUserId" placeholder="User Id" name="deleteUserId">
+                <input type="text" id="deleteUserId" placeholder="User Id" name="deleteUserId"><br><br>
                 <input type="submit" id="delete-btn" value="Delete">
             </form>
         </div>
@@ -75,7 +75,7 @@
         <div id="update_data" style="display: none;">
             <h1>Update record</h1>
             <hr>
-            <form id="updateUser">
+            <form id="updateUser" name="updateform">
                 <label for="updateUserId">User Id</label>
                 <input type="text" id="updateUserId" placeholder="User Id" name="updateUserId"><br><br>
 
@@ -86,7 +86,7 @@
                 <label for="updateuser_name">User Name </label>
                 <input type="text" name="uusername" id="uusername" required><br><br>
                 <label for="updateemail">Email id </label>
-                <input type="text" name="uemail" id="uemail" disabled><br><br>
+                <input type="email" name="uemail" id="uemail" required><br><br>
                 <label for="updatenumber">Mobile Number </label>
                 <input type="number" name="unumber" id="unumber" required><br><br>
                 <label for="updatepass">Password </label>
