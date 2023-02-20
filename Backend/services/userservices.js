@@ -37,7 +37,8 @@ const servicesInsertData = async (newUser) => {
 }
 
 const servicesUpdateData = async (id, updateUserData) => {
-    const sqlQuery = `update user set first_name = "${updateUserData.fname}" , last_name = "${updateUserData.lname}", user_name = "${updateUserData.user_name}", email_id = "${updateUserData.email}", mobile_number = "${updateUserData.num}", password = "${updateUserData.pass}" where user_id = ${id}`;
+    var ciphertext = CryptoJS.AES.encrypt(updateUserData.pass, 'secret key 123').toString();
+    const sqlQuery = `update user set first_name = "${updateUserData.fname}" , last_name = "${updateUserData.lname}", user_name = "${updateUserData.user_name}", email_id = "${updateUserData.email}", mobile_number = "${updateUserData.num}", password = "${ciphertext}" where user_id = ${id}`;
     const result = await updateData(sqlQuery);
     return new Promise((resolve)=>{
         resolve(result);

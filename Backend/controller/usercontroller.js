@@ -69,6 +69,7 @@ const controlCheckData = async (req,res)=>{
     else
     {
         res.send({
+            userid: result[0].user_id,
             userName: result[0].user_name,
             firstName: result[0].first_name,
             lastName: result[0].last_name,

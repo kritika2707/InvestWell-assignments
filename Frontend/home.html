@@ -27,8 +27,8 @@
 
         <!-- Sign UP page -->
         <div class="form_div" id="sign_up_form" style="display: block;">
-            <h1>Sign Up Here</h1>
-            <hr>
+            <h1 id="headsignup">Sign Up Here</h1>
+            <hr id="hr-signup">
             <form id="myForm" name="signupform">
                 <label for="fname">First Name </label>
                 <input type="text" id="fname" name="fname" required><br><br>
@@ -41,7 +41,8 @@
                 <label for="number">Mobile Number </label>
                 <input type="number" name="number" id="number" required><br><br>
                 <label for="pass">Password </label>
-                <input type="password" name="pass" id="pass" required>
+                <input type="password" name="pass" id="pass" required><br><br>
+                <span style="float: right; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: bold; font-size: 12px;">Show Password</span>
                 <input type="checkbox" id="showpass"><br><br>
                 <label for="cnfpass">Confirm Password</label>
                 <input type="password" name="cnfpass" id="cnfpass" required><br><br>
@@ -58,26 +59,26 @@
 <!-- Delete user from database with userId-->
 
         <div id="delete_user" style="display: none;">
-            <form id="">
-                <h1>Delete User</h1><br><br>
-                <input type="text" id="deleteUserId" placeholder="User Id" name="deleteUserId"><br><br>
+            <form id="deleteform">
+                <h1 id="headdelete">Delete User</h1><br><br>
+                <input type="text" id="deleteUserId" placeholder="User Id" name="deleteUserId" disabled><br><br>
                 <input type="submit" id="delete-btn" value="Delete">
             </form>
         </div>
 
 <!-- Display table to display data from database -->        
         <div id='showTable' style="display: none;">
-            <h1 style="text-align: center;">Users Data</h1>
+            <h1 style="text-align: center;"></h1>
             <table class="myTable"></table>
         </div>
 
 <!-- Update user data form  -->        
         <div id="update_data" style="display: none;">
-            <h1>Update record</h1>
+            <h1 id="headupdate">Update record</h1>
             <hr>
             <form id="updateUser" name="updateform">
                 <label for="updateUserId">User Id</label>
-                <input type="text" id="updateUserId" placeholder="User Id" name="updateUserId"><br><br>
+                <input type="text" id="updateUserId" placeholder="User Id" name="updateUserId" disabled><br><br>
 
                 <label for="ufname">First Name </label>
                 <input type="text" name="ufname" id="ufname" required><br><br>
@@ -86,11 +87,11 @@
                 <label for="updateuser_name">User Name </label>
                 <input type="text" name="uusername" id="uusername" required><br><br>
                 <label for="updateemail">Email id </label>
-                <input type="email" name="uemail" id="uemail" required><br><br>
+                <input type="email" name="uemail" id="uemail" disabled><br><br>
                 <label for="updatenumber">Mobile Number </label>
                 <input type="number" name="unumber" id="unumber" required><br><br>
                 <label for="updatepass">Password </label>
-                <input type="password" name="upass" id="upass"required><br><br>
+                <input type="password" name="upass" id="upass"><br><br>
                 <input type="submit" id="update-btn" value="Update">
                 <input type="submit" id="updatereset-btn" value="Reset">
 
@@ -103,8 +104,8 @@
         <!-- SignIn form  -->
         
         <div id="signin_div" style="display: none;">
-            <h1 id="login_head" style="padding-left:50px;">Log In</h1>
-            <hr>
+            <h1 id="login_head">Log In</h1>
+            <hr style="width: 90px; height: 4px; background-color: rgb(153, 118, 145); border: none; align-items: center;">
             <form id="login_fields" name="second">
 
                 <label for="user_name1">User Name </label>

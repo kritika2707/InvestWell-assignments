@@ -1,5 +1,6 @@
 let user_detail = [];
 let user_id = 0;
+let Data;
 //var hash=new Map();
 document.getElementById("signup").addEventListener("click", toSubmit)
 function toSubmit(e) {
@@ -113,6 +114,7 @@ function deleteDisplay() {
     document.getElementById("update_data").style.display = "none";
     document.getElementById('showTable').style.display = "none";
     document.getElementById('displayDiv').style.display = "none";
+    document.getElementById('deleteUserId').value = Data.userid;
 }
 function updateDisplay() {
     document.getElementById("signin_div").style.display = "none";
@@ -121,6 +123,12 @@ function updateDisplay() {
     document.getElementById("update_data").style.display = "block";
     document.getElementById('showTable').style.display = "none";
     document.getElementById('displayDiv').style.display = "none";
+    document.getElementById('updateUserId').value = Data.userid;
+    document.getElementById('ufname').value = Data.firstName;
+    document.getElementById('ulname').value = Data.lastName;
+    document.getElementById('uusername').value = Data.userName;
+    document.getElementById('uemail').value = Data.email;
+    document.getElementById('unumber').value = Data.phone_no;    
 }
 
 function getApi() {
@@ -286,7 +294,7 @@ function loginApi(e){
         //dataType:"json",
         data: obj,
         success: function (result) {
-            console.log(result);
+            
             if(typeof(result)=== "string")
             {
                 alert(result);
@@ -297,13 +305,15 @@ function loginApi(e){
             document.getElementById("sign_up_form").style.display = "none";
             document.getElementById("delete_user").style.display = "none";
             document.getElementById("update_data").style.display = "none";
+            console.log(result);
+            Data = result;
             let username = result.userName;
             let firstname = result.firstName;
             let lastname = result.lastName
             let emailid = result.email;
             let contact = result.phone_no;
 
-            let display = "<h1 id='welcome'>Welcome " +username+ "!! </h1> <br><br> <div id='afterLogin'> First Name :" +firstname+"<br> Last Name : "+lastname+"<br> Email : "+emailid+"<br> Phone Number : "+contact+"<br><div>";    
+            let display = "<h1 id='welcome'>Welcome " +username+ "!! </h1> <br><br> <div id='afterLogin'>User Id:"+result.userid+"<br> First Name :" +firstname+"<br> Last Name : "+lastname+"<br> Email : "+emailid+"<br> Phone Number : "+contact+"<br><div>";    
             document.getElementById('displayDiv').innerHTML = display;
             document.forms.second.user_name1.value = "";
             document.forms.second.pass1.value = "";
