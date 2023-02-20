@@ -297,11 +297,11 @@ function loginApi(e){
             document.getElementById("sign_up_form").style.display = "none";
             document.getElementById("delete_user").style.display = "none";
             document.getElementById("update_data").style.display = "none";
-            let username = result[0].user_name;
-            let firstname = result[0].first_name;
-            let lastname = result[0].last_name
-            let emailid = result[0].email_id;
-            let contact = result[0].mobile_number;
+            let username = result.userName;
+            let firstname = result.firstName;
+            let lastname = result.lastName
+            let emailid = result.email;
+            let contact = result.phone_no;
 
             let display = "<h1 id='welcome'>Welcome " +username+ "!! </h1> <br><br> <div id='afterLogin'> First Name :" +firstname+"<br> Last Name : "+lastname+"<br> Email : "+emailid+"<br> Phone Number : "+contact+"<br><div>";    
             document.getElementById('displayDiv').innerHTML = display;

@@ -1,6 +1,6 @@
 // this file is for services functions....
 const { fetchData, insertData, updateData, deleteData, checkData } = require('../repositories/userdb');
-const bcrypt = require("bcrypt")
+var CryptoJS = require("crypto-js");
 
 //callback is used here
 /* const servicesFetchData = (cb)=>{ */
@@ -28,7 +28,8 @@ const servicesFetchData = async () => {
 /* }); */
 
 const servicesInsertData = async (newUser) => {
-    const sqlQuery = `insert into user(first_name,last_name,user_name,email_id,mobile_number,password) values("${newUser.fname}","${newUser.lname}","${newUser.user_name}","${newUser.email}",${newUser.number},"${newUser.pass}")`;
+    var ciphertext = CryptoJS.AES.encrypt(newUser.pass, 'secret key 123').toString();
+    const sqlQuery = `insert into user(first_name,last_name,user_name,email_id,mobile_number,password) values("${newUser.fname}","${newUser.lname}","${newUser.user_name}","${newUser.email}",${newUser.number},"${ciphertext}")`;
     const result = await insertData(sqlQuery);
     return new Promise((resolve) => {
         resolve(result);
@@ -51,8 +52,14 @@ const servicesDeleteData = async (id) => {
     })
 }
 const servicesCheckData = async (checkUserData) => {
-    const sqlQuery = `select * from user where user_name = "${checkUserData.user_name}" and password = "${checkUserData.pass}"`;
+    const sqlQuery = `select * from user where user_name = "${checkUserData.user_name}"`;
+    
+    
     const result = await checkData(sqlQuery);
+
+    
+    
+    
     //console.log("Service console:",result)
     return new Promise((resolve) => {
         resolve(result);

@@ -1,6 +1,8 @@
 const { servicesFetchData, servicesInsertData, servicesUpdateData, servicesDeleteData, servicesCheckData } = require('../services/userservices');
 const path = require("path");
+var CryptoJS = require("crypto-js");
 
+//console.log(hasheddata)
 
 const showForm = (req, res) => {
     res.sendFile(path.join(__dirname, "../..", "frontend", "home.html"));
@@ -53,21 +55,26 @@ const controlCheckData = async (req,res)=>{
     // if(checkUserData.length == 0){
         // res.send("Enter required fields!");
     // }
-    if(result.length == 0)
+    if(result.length == 0){
+        return res.send("Invalid Credentials!!");
+    }
+    var bytes  = CryptoJS.AES.decrypt(result[0].password, 'secret key 123');
+    var originalText = bytes.toString(CryptoJS.enc.Utf8);
+    
+    if(originalText != checkUserData.pass)
     {
         return res.send("Invalid Credentials!!");
     }
-    // else
-    // {
-        // let sendData = {
-            // userName: result[0].user_name,
-            // firstName: result[0].first_name,
-            // lastName: result[0].last_name,
-            // email: result[0].email_id,
-            // phone_no: result[0].mobile_number
-        // }
-        res.send(result);
-    //}
+    else
+    {
+        res.send({
+            userName: result[0].user_name,
+            firstName: result[0].first_name,
+            lastName: result[0].last_name,
+            email: result[0].email_id,
+            phone_no: result[0].mobile_number
+        })
+    }
 }
 
 

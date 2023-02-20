@@ -6,7 +6,7 @@ const signUpSchema = Joi.object({
     user_name: Joi.string().min(3).max(15).required(),
     email: Joi.string().email().pattern(new RegExp(/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/)).required(),
     number: Joi.number().required(),
-    pass: Joi.string().min(7).max(16).pattern(new RegExp(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]$/)).required(),
+    pass: Joi.string().min(7).max(16).pattern(new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{7,16}$/)).required(),
     cnfpass: Joi.ref('pass')
 })
 const loginSchema = Joi.object({
