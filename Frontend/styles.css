@@ -18,7 +18,7 @@ body{
     color: rgb(104, 48, 91);
 }
 #headdelete, #headupdate{
-    margin: auto;
+    margin: 10px auto;
     text-align: center;
     color: rgb(104, 48, 91);
 }
@@ -41,13 +41,14 @@ select {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-#hr-signup {
+#hr-signup{
     width: 110px;
     height: 4px;
     background-color: rgb(153, 118, 145);
     border: none;
     align-items: center;
 }
+
 /* css for signup button */
 #signup {
     border: none;
@@ -55,7 +56,7 @@ select {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     padding: 8px;
     border-radius: 10px;
-    background-color: rgb(153, 118, 145);
+    background-color: rgb(104, 48, 91);
     color: antiquewhite;
     margin-top: 40px;
 }
@@ -184,7 +185,7 @@ label {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     padding: 8px;
     border-radius: 10px;
-    background-color: rgb(153, 118, 145);
+    background-color: rgb(104, 48, 91);
     color: antiquewhite;
     margin-left: 175px;
 }
@@ -253,7 +254,8 @@ select {
 }
 #welcome{
     text-align: center;
-    font-size: 70px;
+    font-size: 50px;
+    color:rgb(104, 48, 91);
 }
 
 #updatereset-btn{

@@ -42,7 +42,7 @@ function validation() {
     let regEmail = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/g;
     var regPhone=/^\d{10}$/;                                        
     var regName = /^[a-zA-Z0-9]+$/;
-    var regPass = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,16}$/;
+    var regPass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{7,16}$/;
 
     if (user_name == "" || regName.test(user_name)) {
         window.alert("Please enter valid user name");
@@ -155,9 +155,9 @@ function getApi() {
             <th>Mobile Number</th></tr>`: "No data in database";
             rows.forEach((user) => {
                 str += `<tr>
+                <td>${user.user_name}</td>
                 <td>${user.first_name}</td>
                 <td>${user.last_name}</td>
-                <td>${user.user_name}</td>
                 <td>${user.email_id}</td>
                 <td>${user.mobile_number}</td>
                 </tr>`;
@@ -256,22 +256,11 @@ function updateApi(e) {
             console.log(error);
         }
     });
-    document.forms.updateform.updateUserId.value = "";
-    document.forms.updateform.ufname.value = "";
-    document.forms.updateform.ulname.value = "";
-    document.forms.updateform.uusername.value = "";
-    document.forms.updateform.uemail.value = "";
-    document.forms.updateform.unumber.value = "";
     document.forms.updateform.upass.value = "";
 }
 
-function updateReset(){
-    document.forms.updateform.updateUserId.value = "";
-    document.forms.updateform.ufname.value = "";
-    document.forms.updateform.ulname.value = "";
-    document.forms.updateform.uusername.value = "";
-    document.forms.updateform.uemail.value = "";
-    document.forms.updateform.unumber.value = "";
+function updateReset(e){
+    e.preventDefault();
     document.forms.updateform.upass.value = "";
 }
 document.getElementById('login').addEventListener('click',loginApi);
@@ -305,7 +294,7 @@ function loginApi(e){
             document.getElementById("sign_up_form").style.display = "none";
             document.getElementById("delete_user").style.display = "none";
             document.getElementById("update_data").style.display = "none";
-            console.log(result);
+            //console.log(result);
             Data = result;
             let username = result.userName;
             let firstname = result.firstName;
@@ -313,7 +302,7 @@ function loginApi(e){
             let emailid = result.email;
             let contact = result.phone_no;
 
-            let display = "<h1 id='welcome'>Welcome " +username+ "!! </h1> <br><br> <div id='afterLogin'>User Id:"+result.userid+"<br> First Name :" +firstname+"<br> Last Name : "+lastname+"<br> Email : "+emailid+"<br> Phone Number : "+contact+"<br><div>";    
+            let display = "<h1 id='welcome'>Welcome " +username+ "!! </h1> <br><br> <div id='afterLogin'> First Name :" +firstname+"<br> Last Name : "+lastname+"<br> Email : "+emailid+"<br> Phone Number : "+contact+"<br><div>";    
             document.getElementById('displayDiv').innerHTML = display;
             document.forms.second.user_name1.value = "";
             document.forms.second.pass1.value = "";

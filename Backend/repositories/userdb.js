@@ -39,7 +39,7 @@ const insertData = async (sqlQuery) => {
         sqlQuery,
         (err, res) => {
             if (err) {
-                reject(err);
+                return reject(err);
             }
             else {
                 resolve("New record inserted!!");

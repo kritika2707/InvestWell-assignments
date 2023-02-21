@@ -61,7 +61,7 @@ const controlCheckData = async (req,res)=>{
     }
     var bytes  = CryptoJS.AES.decrypt(result[0].password, 'secret key 123');
     var originalText = bytes.toString(CryptoJS.enc.Utf8);
-    
+    console.log(originalText);
     if(originalText != checkUserData.pass)
     {
         return res.send("Invalid Credentials!!");

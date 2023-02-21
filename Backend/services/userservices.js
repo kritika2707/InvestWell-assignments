@@ -30,7 +30,13 @@ const servicesFetchData = async () => {
 const servicesInsertData = async (newUser) => {
     var ciphertext = CryptoJS.AES.encrypt(newUser.pass, 'secret key 123').toString();
     const sqlQuery = `insert into user(first_name,last_name,user_name,email_id,mobile_number,password) values("${newUser.fname}","${newUser.lname}","${newUser.user_name}","${newUser.email}",${newUser.number},"${ciphertext}")`;
-    const result = await insertData(sqlQuery);
+    let result;
+    try{
+        result = await insertData(sqlQuery);
+    }
+    catch(err){
+        result = err;
+    }
     return new Promise((resolve) => {
         resolve(result);
     })

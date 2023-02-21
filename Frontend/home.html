@@ -15,7 +15,7 @@
     <body>
         <!-- creating navigation bar for home page -->
         <nav id="header">
-            <li id="home"><a href="#">Home</a></li>
+            <li id="home"><a href="#sign_up_form">Home</a></li>
             <li id="about"><a href="#">About</a></li>
             <li id="contact"><a href="#">Contact Us</a></li>
             <li id="signUpD"><a href="#sign_up_form" onclick="signUpDisplay()">Sign up</a></li>
@@ -60,7 +60,8 @@
 
         <div id="delete_user" style="display: none;">
             <form id="deleteform">
-                <h1 id="headdelete">Delete User</h1><br><br>
+                <h1 id="headdelete">Delete User</h1>
+                <hr id="hrdelete" style="width: 30%; height: 4px; background-color: rgb(153, 118, 145); border: none;"><br><br>
                 <input type="text" id="deleteUserId" placeholder="User Id" name="deleteUserId" disabled><br><br>
                 <input type="submit" id="delete-btn" value="Delete">
             </form>
@@ -68,14 +69,15 @@
 
 <!-- Display table to display data from database -->        
         <div id='showTable' style="display: none;">
-            <h1 style="text-align: center;"></h1>
+            <h1 style="text-align: center; color: rgb(116, 69, 105);">Your Profile</h1>
+            <hr id="hrtable" style="width: 10%; height: 4px; background-color: rgb(153, 118, 145); border: none;">
             <table class="myTable"></table>
         </div>
 
 <!-- Update user data form  -->        
         <div id="update_data" style="display: none;">
             <h1 id="headupdate">Update record</h1>
-            <hr>
+            <hr id="hrupdate" style="width: 30%; height: 4px; background-color: rgb(153, 118, 145); border: none;">
             <form id="updateUser" name="updateform">
                 <label for="updateUserId">User Id</label>
                 <input type="text" id="updateUserId" placeholder="User Id" name="updateUserId" disabled><br><br>
@@ -105,7 +107,7 @@
         
         <div id="signin_div" style="display: none;">
             <h1 id="login_head">Log In</h1>
-            <hr style="width: 90px; height: 4px; background-color: rgb(153, 118, 145); border: none; align-items: center;">
+            <hr style="width: 30%; height: 4px; background-color: rgb(153, 118, 145); border: none;">
             <form id="login_fields" name="second">
 
                 <label for="user_name1">User Name </label>
